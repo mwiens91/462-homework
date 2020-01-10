@@ -1,0 +1,88 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Short form for mathbf
+\def\*#1{\mathbf{#1}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+\begin{document}
+
+\textbf{MATH 462 Homework 0} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-01-15}
+
+\textbf{A)} Consider a scalar function of two variables,
+%
+\begin{equation*}
+    \psi(x, y) = y \del{1 - \frac{1}{r^2}} + \frac{B}{2} \ln(r^2)
+    ,
+\end{equation*}
+%
+where $r^2 = x^2 + y^2$ and $B$ is a positive constant. Define a vector
+field $\*U(x, y) = \del{u(x, y), v(x, y)}$ where the scalar velocity
+functions $u(x, y)$ and $v(x, y)$ are related to $\psi(x, y)$ by
+%
+\begin{equation*}
+    u(x, y) = + \pd{\psi}{y}; \quad v(x, y) = - \pd{\psi}{x}.
+\end{equation*}
+%
+Calculate these velocities and evaluate explicitly the divergence of the
+velocity field. Carry out this calculation in (i) mixed Cartesian
+variables $\{x, y, r\}$ where $r$ derivatives are done implicitly, and
+in (ii) purely polar coordinates $\{r, \theta\}$. Explain why the end
+result could have been anticipated, and that $\*U(x, y)$ can be
+represented as a curl ($\nabla \times$).
+
+
+Show that $\*U(x, y)$ can also be represented by a gradient, $\nabla
+\phi(x, y)$, by constructing the simplest $\phi(x, y)$. Could this
+result have been anticipated, or is there something special going on?
+Your end result will seem to be multi-valued, but do you think this is a
+serious issue?
+
+\textbf{Solution}
+
+hey. also: (Hint: if you have difficulty getting started, try setting B
+= 0 first.)
+
+\newpage
+
+\textbf{B)} The posted Matlab script \textit{hw01.m} gives an example of
+plotting level curves and vector fields. Modify the script to use the
+$\psi(x, y)$ and $\*U(x, y)$ from problem A. The plot also
+shows how to remove the points inside the unit circle---how does this
+circle visually relate to the vector field? Note also that the plots
+look qualitatively different over ranges of the parameter $B$.
+
+Make two plots for values of $B$ that show two differing flow patterns.
+Indicate by a (computed) red $\ast$ places where the velocity field is
+$\*0$. Choose separate gridpoint sets for the level curves and the
+vector fields to get visually useful and well-resolved plots.
+
+\textbf{Solution}
+
+hey
+
+\end{document}
