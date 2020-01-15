@@ -17,6 +17,10 @@
 % Short form for mathbf
 \def\*#1{\mathbf{#1}}
 
+% Unit vectors
+\newcommand{\ihat}{\boldsymbol{\hat{\imath}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\jmath}}}
+
 % Links
 \usepackage{hyperref}
 
@@ -64,8 +68,177 @@ serious issue?
 
 \textbf{Solution}
 
-hey. also: (Hint: if you have difficulty getting started, try setting B
-= 0 first.)
+In mixed Cartesian variables we have (by repeatedly applying the chain
+rule)
+%
+\begin{align*}
+    u(x, y)
+        &= \dpd{\psi}{y} \\
+        &=
+            \del{1 - \frac{1}{r^2}}
+            + y \del{\frac{2}{r^3} \dpd{r}{y}}
+            + \frac{B}{2 r^2} \del{2 r} \dpd{r}{y} \\
+        &=
+            1 - \frac{1}{r^2}
+            + \frac{2 y^2}{r^4}
+            + \frac{B y}{r^2} \\
+        &=
+            1
+            + \frac{1}{r^2} \del{B y - 1}
+            + \frac{2 y^2}{r^4}
+        ,
+\end{align*}
+%
+and
+%
+\begin{align*}
+    v(x, y)
+        &= - \dpd{\psi}{x} \\
+        &=
+            - \frac{2 y}{r^3} \dpd{r}{x}
+            - \frac{B}{2 r^2} \del{2 r} \dpd{r}{x} \\
+        &=
+            - \frac{2 y x}{r^4}
+            - \frac{B x}{r^2}
+        .
+\end{align*}
+%
+The divergence of the vector field is then (again calculated by
+repeatedly applying the chain rule)
+%
+\begin{align*}
+     \nabla \cdot \*U
+        &= \dpd{u}{x} + \dpd{v}{y} \\
+        &=
+            \del{\frac{2 x}{r^4} (1 - B y) - \frac{8 x y^2}{r^6}}
+            +
+            \del{
+                - \frac{2 x}{r^4}
+                + \frac{8 x y^2}{r^6}
+                + \frac{2 B x y}{r^4}
+            } \\
+        &= 0
+        .
+\end{align*}
+%
+Performing the same calculations in polar coordinates, we
+first express $\psi$ in terms of $r$ and $\theta$:
+%
+\begin{equation*}
+    \psi(r, \theta) = r \sin \theta \del{1 - \frac{1}{r^2}} + \frac{B}{2} \ln(r^2)
+    .
+\end{equation*}
+%
+Then we have
+%
+\begin{align*}
+    \dpd{\psi}{r} &=
+        \sin \theta
+        + \frac{\sin \theta}{r^2}
+        + \frac{B}{r}
+        , \\
+    \dpd{\psi}{\theta} &=
+        r \cos \theta \del{1 - \frac{1}{r^2}}
+        .
+\end{align*}
+%
+Expressing
+%
+\begin{equation*}
+    \*U(r, \theta) = \del{\frac{1}{r} \dpd{\psi}{\theta}, - \dpd{\psi}{r}}
+    ,
+\end{equation*}
+%
+we have
+%
+\begin{align*}
+    r \del{\nabla \cdot \*U}
+        &= \dpd{\del{r U_1}}{r} + \dpd{U_2}{\theta} \\
+        &= \dpd{}{r} \del{\dpd{\psi}{\theta}} +  \dpd{}{\theta} \del{- \dpd{\psi}{r}} \\
+        &= \sbr{\cos \theta \del{1 - \frac{1}{r^2}} + 2 \frac{\cos \theta}{r^2}}
+           + \sbr{-\cos \theta - \frac{\cos \theta}{r^2}} \\
+        &= 0
+        .
+\end{align*}
+%
+This could have been easily anticipated because mixed partial
+derivatives commute. Taking Cartesian coordinates as an example, it is
+obvious that
+%
+\begin{equation*}
+    \nabla \cdot \*U = \dpd{u}{x} + \dpd{v}{y}
+                     = \dpd{}{x} \dpd{\psi}{y} + \dpd{}{y} \del{- \dpd{\psi}{x}}
+                     = \dmd{\psi}{2}{x}{}{y}{} - \dmd{\psi}{2}{y}{}{x}{}
+                     = 0
+    .
+\end{equation*}
+%
+Note also that we can express $\*U(x, y)$ as
+%
+\begin{equation*}
+    \*U(x, y) = \dpd{\psi}{y} \ihat - \dpd{\psi}{x} \jhat = \nabla \times \nabla \psi
+    .
+\end{equation*}
+%
+If for some function $\phi$ we have $\nabla \phi = \*U$ then we must
+have
+%
+\begin{align*}
+    \dpd{\phi}{x} &= \dpd{\psi}{y}, \\
+    \dpd{\phi}{y} &= - \dpd{\psi}{x}.
+\end{align*}
+%
+This implies that
+%
+\begin{align*}
+    \phi(x, y) &= \int \dpd{\psi}{y} \dif x + c_1(y), \\
+    \text{and } \quad \phi(x, y) &= - \int \dpd{\psi}{x} \dif y + c_2(x).
+\end{align*}
+%
+Computing the integrals (with the help of Maple) we have
+%
+\begin{align*}
+    \int \dpd{\psi}{y} \dif x
+        &= \int
+            \del{
+            1
+            + \frac{1}{r^2} \del{B y - 1}
+            + \frac{2 y^2}{r^4}
+            }
+           \dif x \\
+        &= x + B \arctan \del{\frac{x}{y}} + \frac{x}{r^2}, \\ \\
+    - \int \dpd{\psi}{x} \dif y
+        &= - \int
+            \del{
+            \frac{2 y x}{r^4}
+            + \frac{B x}{r^2}
+            }
+           \dif x \\
+        &=  - B \arctan \del{\frac{y}{x}} + \frac{x}{r^2} \\
+        &=  - \frac{\pi B}{2} + B \arctan \del{\frac{x}{y}} + \frac{x}{r^2}
+        .
+\end{align*}
+%
+So we can take $\phi$ to be given by
+%
+\begin{equation*}
+    \phi(x, y) = x \del{1 + \frac{1}{r^2}} + B \arctan \del{\frac{x}{y}} - \frac{\pi B}{2}
+    .
+\end{equation*}
+%
+Since we only care about taking the gradient of $\phi$, we can drop the
+constant and have a simpler expression
+%
+\begin{equation*}
+    \phi(x, y) = x \del{1 + \frac{1}{r^2}} + B \arctan \del{\frac{x}{y}}
+    .
+\end{equation*}
+%
+I emphasize again, the constant does not matter in this context! That we
+can find such a $\phi$ could have been anticipated be noticing that
+$\*U$ is simply a rotation (a 90-degree clockwise rotation) of $\nabla
+\phi$. Thus we can view $\*U$ as representing $\phi$ in a new coordinate
+system with the axes rotated relative to the original coordinate system.
 
 \newpage
 
