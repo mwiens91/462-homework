@@ -31,6 +31,11 @@
 \fancyhead[R]{\thepage}
 \renewcommand\headrulewidth{0pt}
 
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
 \begin{document}
 
 \textbf{MATH 462 Homework 0} \\
@@ -256,6 +261,52 @@ vector fields to get visually useful and well-resolved plots.
 
 \textbf{Solution}
 
-hey
+Visually speaking, the unit circle plays an interesting role for these
+plots. In the upper half plane, the speeds of the velocity field $\*U$
+are relatively large and move around the circle in a clockwise circular
+pattern. In the lower half plane, closer to the circle, the velocity
+still proceeds from left to right ; however, for lower values of $y$ the
+speeds diminish. In terms of the level curves of $\psi$, the velocity
+field $\*U$ seems to follow each level curve, meaning that if a point is
+on a level curve, it will stay on that curve (or at least this is how it
+visually appears). The level curves seem to be related to the curvature
+of the unit circle as well (exactly what this relationship is I don't
+know how to express).
+
+An interesting phenomenon happens close to $B_{\text{crit}} = 2$. When
+we have values of $B < B_{\text{crit}}$, level curves intersect the unit
+circle, however, for values $B > B_{\text{crit}}$, this never occurs.
+Another interesting thing happens around $B_{\text{crit}} = 2$: when $B$
+is less than this value the zero-velocity points always occur at $y =
+- \frac{B}{2}$ \textit{on} the unit circle, and when $B$ is greater than
+this value, the zero-velocity points always occur at $x = 0$
+with one point above the unit circle and one point below the unit circle.
+
+One last observation is that regardless of $B$, the level set for $\psi
+= 0$ includes the unit circle itself. (This can be easily verified by
+substituting $r = 1$ into the equation for $\psi$.)
+
+Two plots are shown in
+Figures~\ref{figure:b-low}~and~\ref{figure:b-high}, which show the level
+curves of $\psi$ along with the velocity field $\*U$ with $B = 1.5$ and
+$B = 2.5$, respectively. The size of the quivers show the magnitude of
+$\*U$. The red $\ast$ points $(x, y)$ show where $\*U(x, y) = \*0$. The
+contour lines plotted in black show where $\psi = 0$. Note that $\psi = 0$
+always on the unit circle! This is hard to see in the plot because we
+have also explicitly plotted the unit circle.
+%
+\begin{figure}
+    \includegraphics[width=\textwidth]{fig1}
+    \centering
+    \caption{Level curves of $\psi$ with velocity field $\*U$ ($B = 1.5$)}
+    \label{figure:b-low}
+\end{figure}
+%
+\begin{figure}
+    \includegraphics[width=\textwidth]{fig2}
+    \centering
+    \caption{Level curves of $\psi$ with velocity field $\*U$ ($B = 2.5$)}
+    \label{figure:b-high}
+\end{figure}
 
 \end{document}
