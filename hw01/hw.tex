@@ -1,0 +1,171 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\def\*#1{\mathbf{#1}}
+\newcommand{\B}{\mathcal{B}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Homework 1} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-01-22}
+
+\textbf{A) Passive Drift.} Review the lecture notes for the passive
+drift in 1D flow example
+%
+\begin{equation*}
+    u(x) = \frac{1}{a + a \sin x}
+    .
+\end{equation*}
+%
+This speed is not uniform in $x$, but we can still calculate a mean
+flowspeed for the duck's motion since $u$ is spatially $2 \pi$-periodic.
+Consider a duck starting at $X(0) = - \pi$. When it reaches $X(t_{per})
+= + \pi$, the duck now sees the same downstream conditions as it did at
+$t = 0$. To find the time when $X = + \pi$, use the first integral
+function $t(X)$, so that $t_{per} = t(+\pi)$. The mean flowspeed over
+the period is then calculated as
+%
+\begin{equation*}
+    \text{mean flowspeed} = \frac{X_{per}}{t_{per}} = \frac{2 \pi}{t (+ \pi)}
+\end{equation*}
+%
+and is (surprisingly) independent of the parameter $a$.
+
+Now consider the time-dependent stream velocity
+%
+\begin{equation*}
+    u(x, t) = \frac{1}{1 + a \sin (x - c t)}
+    ,
+\end{equation*}
+%
+where $c$ is the constant translation speed. Given the ODE problem for a
+trajectory $X(t)$ starting at $X(0) = - \pi$. While this ODE is not of
+the separable type, it is in the variable $Y(t) = X(t) - c t$. Show that
+the separation method gives the form
+%
+\begin{equation*}
+    (1 + a \sin Y) (1 - c F(Y)) \dod{Y}{t} = 1
+    ,
+\end{equation*}
+%
+where $F(Y)$ contains both $a$ and $c$ as parameters. Most importantly,
+as unfriendly as the $F(Y)$-term looks. Wolfram Alpha knows hot to
+integrate it. As a check, the first integral result that you want
+contains the combined real-valued parameter
+%
+\begin{equation*}
+    A(a, c) = \sqrt{(1 - c)^2 - (ac)^2}
+    .
+\end{equation*}
+%
+Now comes the interpretive part. Obtain a formula for the time of
+periodicity, $t_{per}(a, c)$, then get a formula for the mean flowspeed,
+$X_{per}/t_{per}$. Wolfram Alpha gives a linear approximation in $c$
+%
+\begin{equation*}
+    \frac{X_{per}}{t_{per}} \approx 1 - \frac{a^2 c}{2}
+    .
+\end{equation*}
+%
+Give an interpretation for why $c > 0$ causes a slowing of the drift.
+
+\textbf{Solution}
+
+\newpage
+
+\textbf{B) Polar Coordinates.} Present a control volume derivation of
+the PDE representing conservation of mass for two-dimensional fluid flow
+in three-dimensional cyclindrical coordinates $(r, \theta, z)$. In this
+context, the two-dimensional flow is the special case with no vertical
+flow ($w \equiv 0$) and no vertical variations ($\pd{}{z} \equiv 0$).
+For convenience, define the velocities $U(r, \theta, t)$ and $V(r,
+\theta, t)$ to be the flow components in the $\hat{r}$- and
+$\hat{\theta}$-directions.
+
+\textbf{Solution}
+
+use diagrams. there's extra hints in the hw document
+
+\newpage
+
+\textbf{C) Lagrangian Derivation of Continuity.} Another common
+derivation of the fluid equations relies on the integral identities of
+multi-variable calculus---instead of the infinitesimal control volume
+approach shown in lectures. Present a Lagrangian derivation of the
+continuity equation based on the ideas and notation sketched out below.
+Organize your write-up as a numbers list identifying each of the major
+concepts/steps.
+
+Consider any initial blob of fluid, $\B(0)$, and let $\B(t)$ Be the blob
+of this original fluid as it moves with the flow. Note that we assume
+the flow velocity is continuous so that we do not have to be concerned
+with the fluid blob breaking into multiple bloblets.
+
+Define the total fluid mass inside the blob by the volume integral over
+the space occupied by the blob
+%
+\begin{equation*}
+    M(t) = \iiint_{\B(t)} \rho(\*x, t) \dif x \dif y \dif z
+\end{equation*}
+%
+and then explain how the principle of conservation of mass requires
+%
+\begin{equation*}
+    \dod{M}{t} = 0
+    .
+\end{equation*}
+%
+Taking the derivative of the integral formula for $M(t)$ involves two
+contributions: time-variations in the integrand $\rho(\*x, t)$, and
+motion of the blob $\B(t)$. This differentiation is essentially a
+three-dimensional version of Leibniz's rule. In particular, explain
+explicitly how the second contribution can be expressed as a surface
+integral. The basic idea is that over a time-interval $\Delta t$ the
+change to the blob geometry can be accounted for by summing over the
+displacements of small surface patches $\Delta S$. This surface integral
+can be then converted to a volume integral using the divergence theorem.
+Finally, invoke the zero-integrand property which states that if an
+integral of the form
+%
+\begin{equation*}
+    \iiint_{\B(t)} \cbr{\text{integrand}} \dif x \dif y \dif z = 0
+\end{equation*}
+%
+for all choices of $\B(t)$, then the integrand must be zero everywhere.
+
+
+\textbf{Solution}
+
+five or six major steps. see diagrams
+
+\end{document}
