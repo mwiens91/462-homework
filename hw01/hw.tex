@@ -43,7 +43,7 @@
 drift in 1D flow example
 %
 \begin{equation*}
-    u(x) = \frac{1}{a + a \sin x}
+    u(x) = \frac{1}{1 + a \sin x}
     .
 \end{equation*}
 %
@@ -79,7 +79,7 @@ the separation method gives the form
 \end{equation*}
 %
 where $F(Y)$ contains both $a$ and $c$ as parameters. Most importantly,
-as unfriendly as the $F(Y)$-term looks. Wolfram Alpha knows hot to
+as unfriendly as the $F(Y)$-term looks. Wolfram Alpha knows how to
 integrate it. As a check, the first integral result that you want
 contains the combined real-valued parameter
 %
@@ -99,7 +99,113 @@ $X_{per}/t_{per}$. Wolfram Alpha gives a linear approximation in $c$
 %
 Give an interpretation for why $c > 0$ causes a slowing of the drift.
 
+\newpage
+
 \textbf{Solution}
+
+We can obtain $t(X)$ from
+%
+\begin{equation*}
+    u(x) = \frac{1}{1 + a \sin x}
+\end{equation*}
+%
+as follows:
+%
+\begin{align*}
+    &\dod{X}{t} = \frac{1}{1 + a \sin X} \\
+    &\implies \dif t = \del{1 + a \sin X} \dif X \\
+    &\implies t(X) = \del{X - a \cos X} - \del{-\pi + a} \\
+    &\implies t(X) = a X - a \cos X + \pi - a
+    .
+\end{align*}
+%
+Then we have that $t_{per} = t(+\pi) =  2 a \pi$, and hence the mean
+flowspeed is given by $X_{per}/t_{per} = 2 \pi / t_{per} = 1$.
+
+Now we will consider the time-dependent stream velocity
+%
+\begin{equation*}
+    u(x, t) = \frac{1}{1 + a \sin (x - c t)}
+    ,
+\end{equation*}
+%
+which gives us the ODE
+%
+\begin{equation*}
+    \dod{X}{t} = \frac{1}{1 + a \sin (X - c t)}
+    .
+\end{equation*}
+%
+If we let $Y(t) \coloneqq X(t) - c t$, then our equation becomes
+%
+\begin{equation*}
+    \dod{Y}{t} + c = \frac{1}{1 + a \sin Y}
+    ,
+\end{equation*}
+%
+or, in ``separable form,''
+%
+\begin{align*}
+    &\dod{Y}{t} = \frac{1}{1 + a \sin Y} - c \\
+    &\implies \del{1 + a \sin Y} \dod{Y}{t} = 1 - c \del{1 + a \sin Y} \\
+    &\implies \del{\frac{1}{1 - c \del{1 + a \sin Y}}} \del{1 + a \sin Y} \dod{Y}{t} = 1 \\
+    &\implies \del{1 - c \sbr{\frac{1}{c} - \frac{1}{c \del{1 - c \del{1 + a \sin Y}}}}} \del{1 + a \sin Y} \dod{Y}{t} = 1 \\
+    &\implies \del{1 - c \sbr{\frac{a c \sin Y + c - 2}{c \del{a c \sin Y + c - 1}}}} \del{1 + a \sin Y} \dod{Y}{t} = 1
+    .
+\end{align*}
+%
+If we write
+%
+\begin{equation*}
+    F(x) \coloneqq \frac{a c \sin x + c - 2}{c \del{a c \sin x + c - 1}}
+    ,
+\end{equation*}
+%
+then our above ODE can be written
+%
+\begin{equation*}
+    \del{1 - c F(Y)} \del{1 + a \sin Y} \dod{Y}{t} = 1
+    .
+\end{equation*}
+%
+Letting
+%
+\begin{equation*}
+    A(a, c) \coloneqq \sqrt{(1 - c)^2 - (ac)^2}
+    ,
+\end{equation*}
+%
+we have that, according to Wolfram Alpha,
+%
+\begin{equation*}
+    \int \del{1 - c F(Y)} \del{1 + a \sin Y} \dif {Y}
+        = \frac{1}{c A}
+        \del{
+            A Y + 2 \arctan
+                \del{\frac{a c + (c - 1) \tan \del{\frac{Y}{2}}}{A}}
+            } + \text{const}
+    .
+\end{equation*}
+%
+We can use this to solve our ODE. First let
+%
+\begin{equation*}
+    G(x) \coloneqq
+        \frac{1}{c A}
+        \del{
+            A x \arctan
+                \del{\frac{a c + (c - 1) \tan \del{\frac{x}{2}}}{A}}
+            }
+    ;
+\end{equation*}
+%
+then we have
+%
+\begin{equation*}
+    t(X) = G(X - c t) - G(-\pi)
+\end{equation*}
+%
+hmmmm
 
 \newpage
 
