@@ -28,11 +28,6 @@
 \fancyhead[R]{\thepage}
 \renewcommand\headrulewidth{0pt}
 
-% Graphics
-% \usepackage{float}
-% \usepackage{graphicx}
-% \graphicspath{ {./img/} }
-
 \begin{document}
 
 \textbf{MATH 462 Homework 1} \\
@@ -122,7 +117,8 @@ as follows:
 Then we have that $t_{per} = t(+\pi) =  2 \pi$, and hence the mean
 flowspeed is given by $X_{per}/t_{per} = 2 \pi / t_{per} = 1$.
 
-Now we will consider the time-dependent stream velocity
+Now we will consider the time-dependent stream velocity (with $0 < c <
+1$)
 %
 \begin{equation*}
     u(x, t) = \frac{1}{1 + a \sin (x - c t)}
@@ -150,14 +146,14 @@ or, in ``separable form,''
     &\implies \del{1 + a \sin Y} \dod{Y}{t} = 1 - c \del{1 + a \sin Y} \\
     &\implies \del{\frac{1}{1 - c \del{1 + a \sin Y}}} \del{1 + a \sin Y} \dod{Y}{t} = 1 \\
     &\implies \del{1 - c \sbr{\frac{1}{c} - \frac{1}{c \del{1 - c \del{1 + a \sin Y}}}}} \del{1 + a \sin Y} \dod{Y}{t} = 1 \\
-    &\implies \del{1 - c \sbr{\frac{a c \sin Y + c - 2}{c \del{a c \sin Y + c - 1}}}} \del{1 + a \sin Y} \dod{Y}{t} = 1
+    &\implies \del{1 - c \sbr{\frac{1 + a \sin Y}{a c \sin Y + c - 1}}} \del{1 + a \sin Y} \dod{Y}{t} = 1
     .
 \end{align*}
 %
 If we write
 %
 \begin{equation*}
-    F(x) \coloneqq \frac{a c \sin x + c - 2}{c \del{a c \sin x + c - 1}}
+    F(x) \coloneqq \frac{1 + a \sin Y}{a c \sin Y + c - 1}
     ,
 \end{equation*}
 %
@@ -179,7 +175,7 @@ we have that, according to Wolfram Alpha,
 %
 \begin{equation*}
     \int \del{1 - c F(Y)} \del{1 + a \sin Y} \dif {Y}
-        = \frac{1}{c A}
+        = - \frac{1}{c A}
         \del{
             A Y + 2 \arctan
                 \del{\frac{a c + (c - 1) \tan \del{\frac{Y}{2}}}{A}}
@@ -191,7 +187,7 @@ We can use this to solve our ODE. First let
 %
 \begin{equation*}
     G(x) \coloneqq
-        \frac{1}{c A}
+        - \frac{1}{c A}
         \del{
             A x + 2 \arctan
                 \del{\frac{a c + (c - 1) \tan \del{\frac{x}{2}}}{A}}
@@ -202,10 +198,61 @@ We can use this to solve our ODE. First let
 then we have
 %
 \begin{equation*}
-    t(X) = G(X - c t) - G(-\pi)
+    t(Y) = G(Y) - \lim_{x \to -\pi^+} G(x)
+    .
 \end{equation*}
 %
-hmmmm
+By inspection, we can determine that that
+%
+\begin{align*}
+    \lim_{x \to - \pi^+} G(x)
+        &= - \frac{1}{c A} \del{- A \pi + 2 \frac{\pi}{2}} \\
+        &= \frac{\pi}{c A} \del{A - 1}, \\ \\
+    \lim_{x \to \pi^-} G(x)
+        &= \frac{\pi}{c A} \del{1 - A}.
+\end{align*}
+%
+Therefore,
+%
+\begin{equation*}
+    t(Y) = G(Y) - \frac{\pi}{c A} \del{1 - A}
+    ,
+\end{equation*}
+%
+and also
+%
+\begin{equation*}
+    t_{per}
+        = \lim_{x \to \pi^-} t(x)
+        = \lim_{x \to \pi^-} G(x) - \frac{\pi}{c A} \del{1 - A}
+        = \frac{2 \pi}{c A} \del{1 - A}
+    .
+\end{equation*}
+%
+Therefore,
+%
+\begin{equation*}
+    \frac{X_{per}}{t_{per}}
+        = \frac{Y_{per} + c t_{per}}{t_{per}}
+        = \frac{2 \pi}{\frac{2 \pi}{c A} \del{1 - A}} + c
+        = \frac{c A}{\del{1 - A}} + c
+    .
+\end{equation*}
+%
+Using Wolfram Alpha, we can compute a linear approximation for this
+result in $c$ to obtain
+%
+\begin{equation*}
+    \frac{X_{per}}{t_{per}} \approx 1 - \frac{a^2 c}{2}
+    .
+\end{equation*}
+%
+Mathematically, the slowing of the drift is apparent when considering
+that to reach any point $z$ in $Y$---that is, for some $t_z$ we have
+$Y(t_z) = z$---to reach the corresponding point in $X$, we have $X(t_z)
+- c t_z = z \implies X(t_z) = z + c t_z$. So in $X$ you can go further
+in any time $t_z$ than in $Y$. Hence we have a ``slowing'' of the drift.
+
 
 \newpage
 
