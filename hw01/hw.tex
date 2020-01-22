@@ -79,7 +79,7 @@ the separation method gives the form
 \end{equation*}
 %
 where $F(Y)$ contains both $a$ and $c$ as parameters. Most importantly,
-as unfriendly as the $F(Y)$-term looks. Wolfram Alpha knows how to
+as unfriendly as the $F(Y)$-term looks, Wolfram Alpha knows how to
 integrate it. As a check, the first integral result that you want
 contains the combined real-valued parameter
 %
@@ -115,11 +115,11 @@ as follows:
     &\dod{X}{t} = \frac{1}{1 + a \sin X} \\
     &\implies \dif t = \del{1 + a \sin X} \dif X \\
     &\implies t(X) = \del{X - a \cos X} - \del{-\pi + a} \\
-    &\implies t(X) = a X - a \cos X + \pi - a
+    &\implies t(X) = X - a \cos X + \pi - a
     .
 \end{align*}
 %
-Then we have that $t_{per} = t(+\pi) =  2 a \pi$, and hence the mean
+Then we have that $t_{per} = t(+\pi) =  2 \pi$, and hence the mean
 flowspeed is given by $X_{per}/t_{per} = 2 \pi / t_{per} = 1$.
 
 Now we will consider the time-dependent stream velocity
@@ -193,7 +193,7 @@ We can use this to solve our ODE. First let
     G(x) \coloneqq
         \frac{1}{c A}
         \del{
-            A x \arctan
+            A x + 2 \arctan
                 \del{\frac{a c + (c - 1) \tan \del{\frac{x}{2}}}{A}}
             }
     ;
