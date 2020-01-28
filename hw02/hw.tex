@@ -105,22 +105,82 @@ Since we are dealing with a blob of fluid (as opposed to a fixed volume
 in space in the Eulerian case), we are fixing the mass inside the fluid,
 and hence we have
 %
-\begin{equation*}
+\begin{equation}
     \dod{M}{t} = 0
     .
-\end{equation*}
+    \label{eq:c-cons-mass}
+\end{equation}
 %
-Evaluating this integral, we have
+Changes in mass can happen because of two reasons: (1) changes in the
+density of the fluid contained in the blob, which can be expressed as
 %
 \begin{equation*}
     \iiint_{\B(t)} \dpd{\rho}{t} \dif V
-    + \iiint_{\B(t)} \rho \dif V
-    - \iiint_{\B(0)} \rho \dif V
+    ;
+\end{equation*}
+%
+and (2) changes due to fluid entering and leaving the surface of blob as
+it moves through space. The change in mass entering and leaving for any
+small surface element $\dif S$ is $(\*U \cdot \*n) \rho \dif S$, where
+$\*n$ is the outer normal vector to the surface of $\B(t)$. Thus
+integrating over the surface we have the net mass leaving the surface:
+%
+\begin{equation*}
+    \iint_{\partial \B(t)} (\*U \cdot \*n) \rho \dif S
+    .
+\end{equation*}
+%
+Combining these two contributions and using~\eqref{eq:c-cons-mass}, we have
+%
+\begin{equation*}
+    \iiint_{\B(t)} \dpd{\rho}{t} \dif V
+    +
+    \iint_{\partial \B(t)} (\*U \cdot \*n) \rho \dif S
     = 0
     .
 \end{equation*}
 %
-\textbf{not sure how to do this ...}
+Using the divergence theorem, we can express the above equation purely
+in terms of a volume integral:
+%
+\begin{equation*}
+    \iiint_{\B(t)}
+        \dpd{\rho}{t}
+        +
+        \nabla \cdot (\rho \*U)
+    \dif V
+    = 0
+    .
+\end{equation*}
+%
+Since $\B$ was an arbitrary fluid blob, it must hold that the integrand
+\textit{always} vanishes, and hence we have that
+%
+\begin{equation}
+    \dpd{\rho}{t}
+    +
+    \nabla \cdot (\rho \*U)
+    = 0
+    .
+    \label{c:zero-integrand}
+\end{equation}
+%
+We can put the left-hand side of \eqref{c:zero-integrand} in a more
+familiar form as follows:
+%
+\begin{align*}
+    \dpd{\rho}{t} + \nabla \cdot (\rho \*U) = 0
+        = \dpd{\rho}{t} + \nabla \rho \cdot \*U + \rho (\nabla \cdot \*U)
+        = \dadvd{\rho}{t} + \rho (\nabla \cdot \*U)
+    .
+\end{align*}
+%
+This leaves us with the familiar conservation of mass equation
+%
+\begin{equation*}
+    \dadvd{\rho}{t} + \rho (\nabla \cdot \*U) = 0
+    .
+\end{equation*}
 
 \newpage
 
