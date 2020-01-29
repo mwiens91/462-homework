@@ -93,15 +93,16 @@ everywhere.
 
 Consider a blob of fluid $\B(t)$ that moves with some continuous flow
 $\*U(\*x, t)$, and where the density of the entire fluid is given by
-$\rho(\*x, t)$. Define the mass inside of the blob at any time $t$
-to be
+$\rho(\*x, t)$.
+
+1. Define the mass inside of the blob at any time $t$ to be
 %
 \begin{equation*}
     M(t) \coloneqq \iiint_{\B(t)} \rho(\*x, t) \dif \*x
     .
 \end{equation*}
-%
-Since we are dealing with a blob of fluid (as opposed to a fixed volume
+
+2. Since we are dealing with a blob of fluid (as opposed to a fixed volume
 in space in the Eulerian case), we are fixing the mass inside the fluid,
 and hence we have
 %
@@ -110,8 +111,8 @@ and hence we have
     .
     \label{eq:c-cons-mass}
 \end{equation}
-%
-Changes in mass can happen because of two reasons: (1) changes in the
+
+3. Changes in mass can happen because of two reasons: (a) changes in the
 density of the fluid contained in the blob, which can be expressed as
 %
 \begin{equation*}
@@ -119,7 +120,7 @@ density of the fluid contained in the blob, which can be expressed as
     ;
 \end{equation*}
 %
-and (2) changes due to fluid entering and leaving the surface of blob as
+and (b) changes due to fluid entering and leaving the surface of blob as
 it moves through space. The change in mass entering and leaving for any
 small surface element $\dif S$ is $(\*U \cdot \*n) \rho \dif S$, where
 $\*n$ is the outer normal vector to the surface of $\B(t)$. Thus
@@ -139,8 +140,8 @@ Combining these two contributions and using~\eqref{eq:c-cons-mass}, we have
     = 0
     .
 \end{equation*}
-%
-Using the divergence theorem, we can express the above equation purely
+
+4. Using the divergence theorem, we can express the above equation purely
 in terms of a volume integral:
 %
 \begin{equation*}
@@ -152,8 +153,8 @@ in terms of a volume integral:
     = 0
     .
 \end{equation*}
-%
-Since $\B$ was an arbitrary fluid blob, it must hold that the integrand
+
+5. Since $\B$ was an arbitrary fluid blob, it must hold that the integrand
 \textit{always} vanishes, and hence we have that
 %
 \begin{equation}
