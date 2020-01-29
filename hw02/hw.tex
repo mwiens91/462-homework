@@ -397,7 +397,7 @@ coordinates:
 \begin{equation}
     \dpd{\del{\rho \*U}}{t} \Delta V \Delta t
     + \frac{1}{r} \dpd{\del{\rho \*U U r}}{r} \Delta V \Delta t
-    + \frac{1}{r} \dpd{\del{\rho \*U V}}{\theta} \Delta t \Delta V
+    + \frac{1}{r} \dpd{\del{\rho \*U V}}{\theta} \Delta V \Delta t
     + \dpd{\del{\rho \*U W}}{z} \Delta V \Delta t
     .
     \label{eq:d-newton-lhs}
@@ -527,9 +527,9 @@ First, we'll evaluate the vector derivatives:
     \dpd{\*U}{\theta}
         &= \dpd{U}{\theta} \rhat
             + U \thetahat
-            + \dpd{V}{r} \thetahat
+            + \dpd{V}{\theta} \thetahat
             - V \rhat
-            + \dpd{W}{r} \zhat
+            + \dpd{W}{z} \zhat
     ,
     \\
     \dpd{\*U}{z} &= \dpd{U}{z} \rhat + \dpd{V}{z} \thetahat + \dpd{W}{z} \zhat
@@ -578,7 +578,7 @@ and in the $z$ component,
     + \frac{1}{r} V \dpd{W}{\theta}
     + W \dpd{W}{z}
     =
-    - \frac{1}{\rho} \dpd{p}{r} - g
+    - \frac{1}{\rho} \dpd{p}{z} - g
     \\
     &\implies
     \dadvd{W}{t}
