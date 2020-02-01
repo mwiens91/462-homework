@@ -1,0 +1,138 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\def\*#1{\mathbf{#1}}
+\newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
+
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Assignment 4} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-02-05}
+
+\textbf{A) A Spinning Bucket Problem.}
+Consider the steady flow velocity $(u, v, w) = (-\Omega y, \Omega x,
+0)$. Verify that it is an incompressible flow. Explain clearly why it
+corresponds to a uniformly rotating fluid (also known as a solid body
+rotation). Then use the momentum equation (with gravity $\*F = - \rho g
+\zhat$) to solve for the accompanying pressure field $p(x, y, z)$. As a
+differential equation problem, explain why the condition $p(0, 0,
+0) = p_{atm}$ is sufficient to uniquely determine the pressure.
+
+Now discuss and resolve the apparent confusion suggested in the first
+two paragraphs of Problem 1.2 (Acheson) involving the Bernoulli
+streamline theorem (Section 1.3). (Extra: Why might an astronomer with
+access to a lot of mercury find this result interesting?)
+
+\textbf{Solution}
+
+hey
+
+\newpage
+
+\textbf{D) Streamlines \& Streamfunctions.}
+The plotting assignment of Homework \#0 involved in the identification
+of a streamfunction whose level curves correspond to level streamlines.
+This problem explores another example of this idea.
+
+In cylindrical coordinates, an axisymmetric flow has no dependence on
+the $\theta$ variable. A Stokes streamfunction, $\Psi(r, z)$, provides a
+steady, axisymmetric flow velocity having the form
+%
+\begin{equation*}
+    \*u = U(r, z) \rhat + W(r, z) \zhat
+\end{equation*}
+%
+through the derivative relations
+%
+\begin{equation*}
+    U = - \frac{1}{r} \dpd{\Psi}{z}; \quad W = + \frac{1}{r} \dpd{\Psi}{r}
+    .
+\end{equation*}
+
+\textbf{i)} For the specific case of the Stokes streamfunction
+%
+\begin{equation*}
+    \Psi(r, z) = \frac{A}{2} r^2 + \frac{m}{4 \pi} \del{1 - \frac{z}{\sqrt{r^2 + z^2}}}
+    ,
+\end{equation*}
+%
+compute the velocity components, then verify they satisfy the
+incompressibility condition.
+
+\textbf{ii)} Show that this $\Psi(r, z)$ is constant along streamlines
+by verifying that
+%
+\begin{equation*}
+    \dadvd{\Psi}{t} = 0
+    .
+\end{equation*}
+%
+\textbf{iii)} Show that the flow direction is tangent to the streamline
+contours everywhere, and note that the calculation is exactly the same
+as in \textbf{ii)}. (Is this a coincidence?)
+
+\textbf{iv)} Use the \texttt{contour} command in Matlab to produce a
+graphic illustrating the flow by streamlines and flow direction arrows.
+Annotate with parameter values, and all other relevant comments.
+
+\textbf{v)} Find the exact location of the flow stagnation point (where
+$\*U = \*0$). What is the value of the streamfunction there? Add this
+special contour to your plot, and note that this contour can act as a
+separating streamline of the flow (i.e., separating into ``inside'' and
+``outside'' parts).
+
+\textbf{vi)} Use the Bernoulli streamline theorem to give a formula for
+the pressure deviation (assume that the pressure far upstream is a
+constant, $p_{atm}$, and no body forces). Label regions of the
+relatively high (H) and/or low (L) pressure regions on your flow graphic
+(you may add these by hand, or plot the pressure field as an extra
+Matlab plot). Verify that these regions are consistent with the observed
+streamline curvatures.
+
+\textbf{vii)} Basec on parts \textbf{i)}--\textbf{vi)}, is it clear that
+this combination of velocity and pressure fields is a solution to the
+incompressible Euler equations? Explain your reasoning.
+
+\newpage
+
+\textbf{Solution}
+
+see the extra bit on the hw plus the fluid mysteries thing
+
+\end{document}
