@@ -46,7 +46,7 @@
 \textbf{2020-02-05}
 
 \textbf{A) A Spinning Bucket Problem.}
-Consider the steady flow velocity $(u, v, w) = (-\Omega y, \Omega x,
+Consider the steady flow velocity $\*u = (u, v, w) = (-\Omega y, \Omega x,
 0)$. Verify that it is an incompressible flow. Explain clearly why it
 corresponds to a uniformly rotating fluid (also known as a solid body
 rotation). Then use the momentum equation (with gravity $\*F = - \rho g
@@ -61,7 +61,14 @@ access to a lot of mercury find this result interesting?)
 
 \textbf{Solution}
 
-hey
+This flow is incompressible because
+%
+\begin{align*}
+    \nabla \cdot \*u
+        &= \dpd{}{x} \del{-\Omega y} + \dpd{}{y} \del{\Omega x} \\
+        &= - y \dpd{\Omega}{x} + x \dpd{\Omega}{y} \\
+        ????
+\end{align*}
 
 \newpage
 
@@ -133,6 +140,73 @@ incompressible Euler equations? Explain your reasoning.
 
 \textbf{Solution}
 
-see the extra bit on the hw plus the fluid mysteries thing
+\textbf{i)} Taking $\Psi$ to be the Stokes streamfunction shown above,
+we have that
+%
+\begin{align*}
+    U &= - \frac{1}{r} \dpd{\Psi}{z}
+        = \frac{m r}{4 \pi} \frac{1}{\del{r^2 + z^2}^{\frac{3}{2}}}
+        , \\
+    W &= + \frac{1}{r} \dpd{\Psi}{r}
+        = A + \frac{m z}{4 \pi} \frac{1}{\del{r^2 + z^2}^{\frac{3}{2}}}
+        .
+\end{align*}
+%
+We can verify the incompressibility condition either by explicitly
+computing the divergence or by noting that that mixed partial
+derivatives commute. For the latter approach, we have that
+%
+\begin{equation*}
+    \nabla \cdot \*u
+        = \frac{1}{r} \dpd{\del{r U}}{r} + \dpd{W}{z}
+        = \frac{1}{r} \dpd{}{r} \del{- \dpd{\Psi}{z}}
+            + \dpd{}{z} \del{\frac{1}{r} \dpd{\Psi}{r}}
+        = - \frac{1}{r} \dmd{\Psi}{2}{r}{}{z}{}
+            + \frac{1}{r} \dmd{\Psi}{2}{z}{}{r}{}
+        = 0
+        .
+\end{equation*}
+%
+\textbf{ii)} Now we will verify that $\Psi$ is constant along
+streamlines. In the advective derivative
+%
+\begin{equation*}
+    \dadvd{\Psi}{t} = \dpd{\Psi}{t} + (\*u \cdot \nabla) \Psi
+    ,
+\end{equation*}
+%
+the first term vanishes because $\Psi$ does not depend on $t$. The
+second term also vanishes, since
+%
+\begin{equation*}
+    (\*u \cdot \nabla) \Psi
+        = \del{- \frac{1}{r} \dpd{\Psi}{z}, \frac{1}{r} \dpd{\Psi}{r}}
+            \cdot \del{\dpd{\Psi}{r}, \dpd{\Psi}{z}}
+        = - \frac{1}{r} \dpd{\Psi}{z} \dpd{\Psi}{r}
+            +\frac{1}{r} \dpd{\Psi}{r} \dpd{\Psi}{z}
+        = 0
+        .
+\end{equation*}
+%
+Therefore we have that
+%
+\begin{equation*}
+    \dadvd{\Psi}{t} = 0
+    ,
+\end{equation*}
+%
+and we can conclude that $\Psi$ is constant along streamlines.
+
+\textbf{iii)} To show that the flow direction is tangent to the
+streamline contours everywhere, we need to show that $\*u$ is always
+orthogonal to $\nabla \Psi$; that is, that $\*u \cdot \nabla \Psi = 0$
+everywhere. This calculation is already done in step \textbf{ii)} above,
+so we can conclude that the flow direction is indeed tangent to the
+stream contours everywhere.
+
+We saw in Homework 0 that the flow followed the streamline contours, so
+this result should be expected.
+
+((for parts $\geq$ iv) need to do plotting stuff))
 
 \end{document}
