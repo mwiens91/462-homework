@@ -63,12 +63,112 @@ access to a lot of mercury find this result interesting?)
 
 This flow is incompressible because
 %
-\begin{align*}
+\begin{equation*}
     \nabla \cdot \*u
-        &= \dpd{}{x} \del{-\Omega y} + \dpd{}{y} \del{\Omega x} \\
-        &= - y \dpd{\Omega}{x} + x \dpd{\Omega}{y} \\
-        ????
+        = \dpd{}{x} \del{-\Omega y} + \dpd{}{y} \del{\Omega x} + \dpd{}{z} (0)
+        = 0
+\end{equation*}
+%
+where the derivatives vanished because $\Omega$ is a constant and $y$
+and $x$ are independent of each other. The flow $\*u$ corresponds to a
+uniformly rotating fluid because
+%
+\begin{equation*}
+    \nabla \times \*u
+        = \del{
+            \dpd{}{x} \del{\Omega x} - \dpd{}{y} \del{- \Omega y}
+        } \zhat
+        = 2 \Omega \, \zhat
+        ;
+\end{equation*}
+%
+that is, the vorticity is constant everywhere and the fluid is rotating
+uniformly. Now, the Euler momentum equation tells us that
+%
+\begin{equation*}
+    \dpd{\*u}{t} + (\*u \cdot \nabla) \*u = - \frac{1}{\rho} \nabla p - g \zhat
+    .
+\end{equation*}
+%
+Noting that
+%
+\begin{equation*}
+    \dpd{\*u}{t} = \*0; \quad
+    (\*u \cdot \nabla) \*u = \del{- \Omega^2 x, - \Omega^2 y, 0}
+    ,
+\end{equation*}
+%
+we can solve for the pressure field using the momentum equation by
+solving the system
+%
+\begin{equation*}
+    \begin{dcases}
+        p_x &= \rho \Omega^2 x \\
+        p_y &= \rho \Omega^2 y \\
+        p_z &= - \rho g
+    \end{dcases}
+    .
+\end{equation*}
+%
+This system is simple enough that we can read off the solution
+%
+\begin{equation*}
+    p(x, y, z) = \rho \del{- g z + \frac{\Omega^2 (x^2 + y^2)}{2}} + p_{atm}
+    .
+\end{equation*}
+%
+From a mathematical point of view, the $p_{atm}$ term can be any
+constant, since the constant vanishes when we take the gradient, and
+hence Euler's equations ``work'' no matter what we set the constant to
+be. We just need to pick some constant that makes agrees with our
+physical interpretation of the system (chosen to be $p_{atm}$ here) and
+then each point in space will have a single pressure value associated
+with it.
+
+Let's consider the confusion suggested in the Acheson problem. Since our
+flow is steady, the quantity
+%
+\begin{equation*}
+    \frac{p}{\rho} + \frac{1}{2} \*u^2 + g z
+\end{equation*}
+%
+is constant along streamlines. According to Acheson, this would
+seemingly imply that the constant pressure surfaces take the form
+%
+\begin{equation*}
+    z = \text{constant} - \frac{\Omega^2 (x^2 + y^2)}{2 g}
+    .
+\end{equation*}
+%
+The confusion here is that this would imply that the surface of a
+rotating bucket of water is at its highest in the center, which goes
+against physical intuition (it should be lowest in the center).
+
+However, $p$ being constant also implies an extra dependence between
+$x$, $y$, and $z$ not considered in the apparent confusion. That is, if
+pressure is constant (using our above result) we also have that
+%
+\begin{equation*}
+    z = \text{another constant} + \frac{\Omega^2 (x^2 + y^2)}{2 g}
+    .
+\end{equation*}
+%
+Evaluating the conserved quantity using the $p$ we calculated, we have
+that
+%
+\begin{align*}
+    H &= \frac{p}{\rho} + \frac{1}{2} \*u^2 + g z \\
+      &= - g z + \frac{\Omega^2 (x^2 + y^2)}{2} + \frac{p_{atm}}{\rho}
+        + \frac{\Omega^2 (x^2 + y^2)}{2} + g z \\
+      &= \Omega^2 (x^2 + y^2) + \frac{p_{atm}}{\rho}
 \end{align*}
+%
+is constant along streamlines, which does not lead to any confusion
+regarding rotating buckets.
+
+For the ``extra'' part of this question, I have no idea why an
+astronomer with access to lots of mercury would be interested in this
+result.
 
 \newpage
 
@@ -132,7 +232,7 @@ relatively high (H) and/or low (L) pressure regions on your flow graphic
 Matlab plot). Verify that these regions are consistent with the observed
 streamline curvatures.
 
-\textbf{vii)} Basec on parts \textbf{i)}--\textbf{vi)}, is it clear that
+\textbf{vii)} Based on parts \textbf{i)}--\textbf{vi)}, is it clear that
 this combination of velocity and pressure fields is a solution to the
 incompressible Euler equations? Explain your reasoning.
 
