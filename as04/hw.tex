@@ -219,7 +219,7 @@ graphic illustrating the flow by streamlines and flow direction arrows.
 Annotate with parameter values, and all other relevant comments.
 
 \textbf{v)} Find the exact location of the flow stagnation point (where
-$\*U = \*0$). What is the value of the streamfunction there? Add this
+$\*u = \*0$). What is the value of the streamfunction there? Add this
 special contour to your plot, and note that this contour can act as a
 separating streamline of the flow (i.e., separating into ``inside'' and
 ``outside'' parts).
@@ -307,6 +307,24 @@ stream contours everywhere.
 We saw in Homework 0 that the flow followed the streamline contours, so
 this result should be expected.
 
-((for parts $\geq$ iv) need to do plotting stuff))
+\textbf{iv)} See the plot below.
+
+\textbf{v)} To find the point where $\*u$ we need both $U = 0$ and $W =
+0$. Here we will assume that in general both $A$ and $m$ are non-zero.
+In order to have $U = 0$, if clearly need $r = 0$. Given that $r = 0$, if
+$W = 0$, we find the required $z$ by solving
+%
+\begin{equation*}
+    A + \frac{m z}{4 \pi} \frac{1}{\del{z^2}^{3/2}} = 0
+\end{equation*}
+%
+which gives us that $z = \pm \frac{\sqrt{- A \pi m}}{2 A \pi}$, which
+only has a real solution if $A < 0$.
+
+uhh not sure i got this right
+
+\textbf{vi)} Use Bernoulli to find pressure deviation
+
+\textbf{vii)} explain if its clear this is solution to incompressible euler
 
 \end{document}
