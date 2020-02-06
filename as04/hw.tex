@@ -144,9 +144,11 @@ The confusion here is that this would imply that the surface of a
 rotating bucket of water is at its highest in the center, which goes
 against physical intuition (it should be lowest in the center).
 
-However, $p$ being constant also implies an extra dependence between
-$x$, $y$, and $z$ not considered in the apparent confusion. That is, if
-pressure is constant (using our above result) we also have that
+One mistake here is that the result only holds along streamlines. It
+appears that they are being generalized to all of space in this example.
+Additionally, $p$ being constant also implies an extra dependence
+between $x$, $y$, and $z$ not considered in the apparent confusion. That
+is, if pressure is constant (using our above result) we also have that
 %
 \begin{equation*}
     z = \text{another constant} + \frac{\Omega^2 (x^2 + y^2)}{2 g}
@@ -307,24 +309,80 @@ stream contours everywhere.
 We saw in Homework 0 that the flow followed the streamline contours, so
 this result should be expected.
 
-\textbf{iv)} See the plot below.
+\textbf{iv)} The plot below shows level curves of $\Psi$ (coloured),
+along with a quiver plot of the velocity field $\*u$. Note that some of
+the velocity quivers near the center of the plot were removed, since,
+relatively speaking, these quivers were too large, which made the other
+quivers to hard to see. As is displayed in the title of the plot, the
+values of the constants used are $A = 20$ and $m = 100$.
 
-\textbf{v)} To find the point where $\*u$ we need both $U = 0$ and $W =
+Also displayed is the point where $\*u = 0$ with a red star, along with
+the associated contour in black (see part \textbf{v)}).
+
+\textbf{v)} To find the point where $\*u = 0$ we need both $U = 0$ and $W =
 0$. Here we will assume that in general both $A$ and $m$ are non-zero.
-In order to have $U = 0$, if clearly need $r = 0$. Given that $r = 0$, if
-$W = 0$, we find the required $z$ by solving
+In order to have $U = 0$, we clearly need $r = 0$. Given that $r = 0$, if
+$W = 0$, we can find the required $z$ by solving
 %
 \begin{equation*}
     A + \frac{m z}{4 \pi} \frac{1}{\del{z^2}^{3/2}} = 0
 \end{equation*}
 %
-which gives us that $z = \pm \frac{\sqrt{- A \pi m}}{2 A \pi}$, which
-only has a real solution if $A < 0$.
+which gives us that $z = - \frac{\text{sgn}(A)}{2} \sqrt{\frac{m}{|A|
+\pi}}$, where sgn gives the sign of its argument. The value of $\Psi$ at
+this point is $\Psi = \frac{m}{2 \pi}$.
 
-uhh not sure i got this right
+This contour at this value of $\Psi$ appears to be a ``separating''
+streamline, since the behaviour on either side of the contour is very
+different. Inside of this region, there is a clear source of flow, where
+the flow velocity is very high close to the source. Outside of the
+region the flow seems to be moving past the region.
 
-\textbf{vi)} Use Bernoulli to find pressure deviation
+\textbf{vi)} Since we have a steady flow, the quantity
+%
+\begin{equation*}
+    H = \frac{p}{\rho} + \frac{1}{2} \*u^2
+\end{equation*}
+%
+is conserved along streamlines. Solving for pressure, we have that
+%
+\begin{equation*}
+    p = p_{atm} - \frac{\rho}{2} \del{\*u^2 - A^2}
+    .
+\end{equation*}
+%
+where the constant was chosen such that $p = p_{atm}$ when $r$ or $z$
+get large, since as either $r$ or $z$ get large in magnitude, $\*u^2 \to
+A^2$.
 
-\textbf{vii)} explain if its clear this is solution to incompressible euler
+The pressure is plotted with the center bit taken out (there is
+extremely negative pressure in the middle). The result is quite
+unintuitive. In the inner region, flow seems to be going against the
+pressure gradient, which doesn't really make sense to me. On the outer
+region the pressure appears to be consistent with the streamline.
+
+\textbf{vii)} Judging from the plots alone, outside of the middle
+region, the fluid appears well behaved and appears to satisfy the
+incompressible Euler equations. However, inside of this region,
+the flow appears extremely divergent, and hence does not appear to
+satisfy the incompressible Euler equations.
+
+For the extra part of this problem, outside of the ``inside'' of the
+separating streamline, the flow reminds me of waters' flow when a
+ship or submarine moves through it.
+
+\newpage
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{fig1}
+    \centering
+\end{figure}
+
+\newpage
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{fig2}
+    \centering
+\end{figure}
 
 \end{document}
