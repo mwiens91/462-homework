@@ -18,6 +18,9 @@
 \def\*#1{\mathbf{#1}}
 \newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
 
+\newcommand{\fS}{\mathcal{S}} % fancy S
+
+\newcommand{\nhat}{\mathbf{\hat{n}}}
 \newcommand{\rhat}{\mathbf{\hat{r}}}
 \newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
 \newcommand{\xhat}{\mathbf{\hat{x}}}
@@ -91,10 +94,74 @@ parameter $a \to 0$,
 %
 Acheson refers to this limit as the line vortex of 3D flow.
 
-\textbf{v)} Evaluate two types of circulation integrals. The first are
-circular loops centered at the origin with $r = R$. The second are
-circular loops that do not enclose (or include) the origin. One of these
-evaluations is a calculation; the other is a mathematical argument.
+\textbf{v)} (This part is optional.) Evaluate two types of circulation
+integrals. The first are circular loops centered at the origin with $r =
+R$. The second are circular loops that do not enclose (or include) the
+origin. One of these evaluations is a calculation; the other is a
+mathematical argument.
+
+\newpage
+
+\textbf{Solution}
+
+\newpage
+
+\textbf{B) Circulation as a constant of the Flow.}
+The circulation integral was introduced for its connection to the
+vorticity via the Stokes theorem,
+%
+\begin{equation*}
+    \Lambda_{\partial \fS}
+        = \oint_{\partial \fS (t)} \*u \cdot \dif \*x
+        = \iint_{\fS} \del{\nabla \times \*u} \cdot \nhat \dif S
+        ,
+\end{equation*}
+%
+where $\partial \fS$ is a simple closed curve within the flow that is a
+boundary for the open surface $\fS$. However, when this integral
+$\Lambda_{\partial \fS (t)}$ is considered on a curve being advected by
+the flow, the idea of circulation is elevated in importance by the
+Kelvin circulation theorem. As in the opening of Chapter 5 in Acheson,
+the theorem is the conservation principle
+%
+\begin{equation*}
+    \dod{}{t} \Lambda_{\partial \fS (t)} = 0
+    .
+\end{equation*}
+%
+The justification is contained in the chapter (partially as Problem
+5.2), but you are being asked to derive this result using a mathematical
+difference quotient approach, with proper limits being stated. Follow
+the outline and the cartoon sketch below.
+%
+\begin{figure}[!ht]
+    \includegraphics[width=14em]{b-diag}
+    \centering
+\end{figure}
+
+1) Express the integral
+%
+\begin{equation*}
+    \Lambda_{\partial \fS (t)} = \oint_{\partial \fS} \*u(\*x, t) \cdot \dif \*x
+\end{equation*}
+%
+as a Riemann sum over the intervals $\Delta \*x_j = \*x(t)_{j + 1} -
+\*x(t)_j$ where $|\Delta \*x_j| \to 0$ gives the limit to the integral.
+But what value should you use for the $\*u$? It really doesn't matter,
+but the most robust choice for many will be the trapezoidal rule that
+takes the average between the values at $\*x(t)_j$ and $\*x(t)_{j + 1}$.
+
+2) Now write the Riemann sum for the circulation integral at $t + \Delta
+t$, and form the difference quotient for the $t$-derivative.
+
+3) The difference quotient expression can be broken up into two sums,
+only one of which immediately has the form of a Riemann sum. Evaluating
+the limits associated with this Riemann sum results in the derivation as
+sketched out in Acheson.
+
+4) But what about the other sum? This is where the midpoint rule works
+its magic---it forms a telescoping sum. And since the integral is
+over a closed loop, the net contribution is zero!
 
 \newpage
 
