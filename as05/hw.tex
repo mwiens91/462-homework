@@ -102,7 +102,161 @@ mathematical argument.
 
 \newpage
 
+\textit{For this assignment I have collaborated with Paul Balogea.}
+
 \textbf{Solution}
+
+\textbf{i)} First note, at $t = 0$ we have
+%
+\begin{align*}
+    &\omega \zhat = \nabla \times \*u = \nabla \times \del{\dpd{\psi}{y}, - \dpd{\psi}{x}} \\
+    &\implies \nabla^2 \psi = - \omega
+    .
+\end{align*}
+%
+Since the initial setup of our fluid is radially symmetric we should
+assume that the streamfunction $\psi$ does not depend on $\theta$.
+Therefore, in polar coordinates our above equation (again, at $t = 0$),
+becomes
+%
+\begin{equation*}
+    \psi^{\prime \prime} + \frac{1}{r} \psi^\prime = - \omega
+    .
+\end{equation*}
+%
+The solution to this equation is
+%
+\begin{equation*}
+    \psi(r, 0) =
+    \begin{cases}
+        - \frac{r^2}{4 \pi a^2} + c_1 \log r + c_2, &0 \leq r < a \\
+        c_3 \log r + c_4, &a < r < \infty
+    \end{cases}
+    .
+\end{equation*}
+%
+and hence our initial flow is given by
+%
+\begin{align*}
+    U(x, y, 0) &=
+    \begin{cases}
+        - \frac{y}{2 \pi a^2} + c_1 \frac{y}{r^2}, &0 \leq r < a \\
+        c_3 \frac{y}{r^2}, &a < r < \infty
+    \end{cases}
+    \\
+    \vspace{10mm}
+    V(x, y, 0) &=
+    \begin{cases}
+        \frac{x}{2 \pi a^2} - c_1 \frac{x}{r^2}, &0 \leq r < a \\
+        - c_3 \frac{x}{r^2}, &a < r < \infty
+    \end{cases}
+\end{align*}
+%
+We will take $c_4 = 0$ as per the instructions. Since the solution must
+be bounded at the origin, we must have $c_1 = 0$. To ensure continuity
+of the flow/streamfunction we also need $c_3 = - \frac{1}{2 \pi}$. We can
+then determine $c_2$ as $c_2 = \frac{-\log a}{2 \pi} + \frac{1}{4 \pi}$
+Hence our flow simplifies to
+%
+\begin{align*}
+    U(x, y, 0) &=
+    \begin{cases}
+        - \frac{y}{2 \pi a^2}, &0 \leq r < a \\
+        - \frac{y}{2 \pi r^2}, &a < r < \infty
+    \end{cases}
+    ,
+    \\
+    \vspace{10mm}
+    V(x, y, 0) &=
+    \begin{cases}
+        \frac{x}{2 \pi a^2}, &0 \leq r < a \\
+        \frac{x}{2 \pi r^2}, &a < r < \infty
+    \end{cases}
+    .
+\end{align*}
+%
+In the Figure~\ref{fig:ai} below the flow is shown. We can see that the
+flow is circular, with the magnitude of the flow increasing from the
+origin to $r = a$, and then decaying again past $r = a$ (although more
+slowly).
+%
+\begin{figure}[!ht]
+    \includegraphics[width=30em]{as05fig1}
+    \centering
+    \caption{The resulting flow with $a = 5$}
+    \label{fig:ai}
+\end{figure}
+
+\textbf{ii)} Using the vorticity equation for a 2D flow we have
+%
+\begin{equation*}
+    \dpd{\omega}{t} + (\*u \cdot \nabla) \omega = 0
+    .
+\end{equation*}
+%
+On both regions $0 \leq r < a$ and $a < r < \infty$ we have $\nabla
+\omega = 0$ at $t = 0$, since in either case it is just a constant.
+Hence we can deduce from the above equation that $\dpd{\omega}{t} = 0$
+for all time.
+
+Hence the vorticity $\omegavec$ and thus the streamfunction $\psi$ end
+velocity $\*u$ is constant in time. Using the equation
+%
+\begin{equation*}
+    \dpd{\*u}{t} + \omegavec \times \*u = - \nabla \del{\frac{p}{\rho_0} + \frac{1}{2} |\*u|^2}
+\end{equation*}
+%
+we can solve for the pressure $p$. Noting that $\dpd{\*u}{t} = 0$ we can
+break down this equation into components:
+%
+\begin{align*}
+    \omega V &= \frac{p_x}{\rho_0} + U U_x + V V_x, \\
+    - \omega U &= \frac{p_y}{\rho_0} + U U_y + V V_y
+    .
+\end{align*}
+%
+Solving for the pressure $p$, we get that, for constants $c$ and $d$,
+%
+\begin{equation*}
+    p =
+    \begin{dcases}
+        \frac{\rho_0 r^2}{8 \pi^2 a^4} + c, &0 \leq r < a \\
+        - \frac{\rho_0}{8 \pi^2 r^2} + d, &a < r < \infty
+    \end{dcases}
+\end{equation*}
+%
+The constant $d$ is $p^\infty$ as was instructed by the question description. The
+constant $c$ we can determine through continuity at $r = a$, which gives us
+%
+\begin{equation*}
+    c = - \frac{\rho_0}{4 \pi^2 a^2} + p^\infty
+    .
+\end{equation*}
+%
+This pressure (as can be seen in Figure~\ref{fig:aiii} below), is
+consistent with the fluid flow, since, as was described in lectures, the
+pressure differential causes the flow to curve towards the lower
+pressure region. Because this pressure differential is radially
+symmetric, the flow curvature is radially symmetric everywhere, which is
+what we observe.
+
+\textbf{iii)} Figure~\ref{fig:aiii} shows a heat map of the pressure and
+fluid flow with $a = \rho_0 = p^\infty = 1$.
+%
+\begin{figure}
+    \includegraphics[width=95mm]{as05fig2}
+    \centering
+    \caption{Subplots of flow quantities}
+    \label{fig:aiii}
+\end{figure}
+
+\textbf{iv)} Finally, note that for the limiting streamfunction $\phi_0$
+we can essentially discard the $0 \leq r < a$ region (since $a \to 0$),
+and therefore
+%
+\begin{equation*}
+    \phi_0(\*x, t) = \lim_{a \to 0} \phi(\*x, t) = - \frac{1}{2 \pi} \log |\*x|
+\end{equation*}
 
 \newpage
 
@@ -166,5 +320,64 @@ over a closed loop, the net contribution is zero!
 \newpage
 
 \textbf{Solution}
+
+1. We can express the integral using Riemann sums, separating $\partial
+   \fS$ into $n$ line segments, where for notational purposes we set
+   $\*x_{n + 1} = \*x_0$.
+%
+\begin{align*}
+    \Lambda_{\partial \fS (t)}
+        &= \oint_{\partial \fS} \*u(\*x, t) \cdot \dif \*x \\
+        &\approx \sum_{i = 1}^n \*u(x_i, t) \cdot \Delta \*x_i(t) \\
+        &\approx \frac{1}{2} \sum_{i = 1}^n \del{\*u(x_i, t) + \*u(x_{i + 1}, t)} \cdot \Delta \*x_{i}(t)
+        ,
+\end{align*}
+%
+where in the last step we used the suggested trapezoidal rule for $\*u$.
+
+2. For time $t + \Delta t$, we have the corresponding integral
+%
+\begin{align*}
+    \Lambda_{\partial \fS (t + \Delta t)}
+        &\approx \frac{1}{2} \sum_{i = 1}^n \del{\*u(\*x_i, t + \Delta t) + \*u(\*x_{i + 1}, t + \Delta t)} \cdot \Delta \*x_i(t + \Delta t)
+        .
+\end{align*}
+%
+To approximate the $t$-derivative, we can use the difference quotient
+%
+\begin{align*}
+    &\frac{\Lambda_{\partial \fS (t + \Delta t)} - \Lambda_{\partial \fS (t)}}{\Delta t} \\
+        &\approx \frac{1}{2 \Delta t} \sum_{i = 1}^n
+            \del{
+                \del{\*u(\*x_i, t + \Delta t) + \*u(\*x_{i + 1}, t + \Delta t)} \cdot \Delta \*x_i(t + \Delta t)
+                - \del{\*u(\*x_i, t) + \*u(\*x_{i + 1}, t)} \cdot \Delta \*x_{i}(t)
+            } \\
+        &= \frac{1}{2 \Delta t} \sum_{i = 1}^n
+            \del{
+                \*u(\*x_i, t + \Delta t) \cdot \Delta \*x_i(t + \Delta t)
+                - \*u(\*x_i, t) \cdot \Delta \*x_i(t)
+            } \\
+        &\qquad + \frac{1}{2 \Delta t} \sum_{i = 1}^n
+            \del{
+                \*u(\*x_{i + 1}, t + \Delta t) \cdot \Delta \*x_i(t + \Delta t)
+                - \*u(\*x_{i + 1}, t) \cdot \Delta \*x_i(t)
+            }
+        .
+\end{align*}
+
+3. In the previous part we broke up the sum into two parts. The first
+   part, by taking the $\Delta \*x \to 0$ we have
+%
+\begin{equation*}
+    \frac{1}{2 \Delta t} \sum_{i = 1}^n
+        \del{
+            \*u(\*x_i, t + \Delta t) \cdot \Delta \*x_i(t + \Delta t)
+            - \*u(\*x_i, t) \cdot \Delta \*x_i(t)
+        } \to \dod{}{t} \oint_{\partial \fS} \*u(\*x, t) \cdot \dif \*x
+        .
+\end{equation*}
+%
+4. I'm honestly not sure where the magic in this part is. I tried
+   working something out for awhile, but couldn't come up with anything.
 
 \end{document}
