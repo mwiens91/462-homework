@@ -1,0 +1,177 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\def\*#1{\mathbf{#1}}
+\newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
+
+\newcommand{\fS}{\mathcal{S}} % fancy S
+
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\omegavec}{\boldsymbol{\omega}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Assignment 6} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-02-26}
+
+\textbf{A) Flow around an island.} (4 pages + plot) The 2D velocity
+potential $\phi(x, y)$ satisfies the Laplace PDE $\nabla^2 \phi = 0$. In
+this problem, you will find a harmonic function on an annulus domain $1
+\leq r \leq R$ where the BCs are applied as flow velocities normal to
+circles at $r = 1$ and $r = R$. For the inner circle, there is no flow:
+$\rhat \cdot \*u(1, \theta) = 0$; for the outer circle, the flow is
+%
+\begin{equation*}
+    \rhat \cdot \*u(R, \theta) =
+        \begin{cases}
+            -1, & 0 < \theta < \pi / 4 \\
+            1, & \alpha < \theta < \alpha + \pi / 4 \\
+            0, & \text{otherwise}
+        \end{cases}
+\end{equation*}
+%
+which specifies inflow ($0 < \theta < \pi / 4$) and outflow ($\alpha <
+\theta < \alpha + \pi / 4$) velocity sectors. On the assignment page
+there is a sample plot of the streamlines and contours of velocity
+potential, along with code for generating it..
+
+\textbf{i)} Using either the method of separation of variables, or a
+Fourier construction in $\theta$, present a derivation for the general
+solution $\phi(r, \theta)$ for this polar geometry. The two parts to
+emphasize are obtaining ODEs for the radial dependence, and integrations
+that determine the series coefficients from the BCs. Not that the flow
+velocity \textit{cannot} be uniquely determined.
+
+\textbf{ii)} Find the corresponding streamfunction (the harmonic
+conjugate) from C-R considerations.
+
+\textbf{iii)} For your own choice of $\alpha$, make a plot of the
+streamlines and contours of velocity potential ($R = 2$ makes a nice
+plot, but seems not to matter) for the unique solution with zero
+circulation. On your plot, indicate regions of fast/slow flow (include
+explanations). Also indicate regions of high/low pressure as deduced by
+flow curvature (again, include logic).
+
+\textbf{iv)} For your specific choice of $\alpha$, what fraction of the
+flow is diverted above, versus below, the island? Explain.
+
+\textbf{Extra plots:} Some intriguing behaviour occurs if enough
+circulation is allowed in the solution. Investigate and explain.
+
+\textbf{Bonus:} Your solution method is doomed if the angle of the
+outlet sector doesn't match that of the inlet. Explain in terms of the
+fluid physics and the mathematics.
+
+\newpage
+
+\textbf{Solution.} hey
+
+\newpage
+
+\textbf{B) Potential flow and branch cuts.} (2 pages + annotated plots)
+The included MATLAB script makes contour plots for a complex potential
+$\Phi(z)$ that corresponds to flow past a flat plate,
+%
+\begin{equation*}
+    \Phi(z) = (z^2 + 1)^{1/2}
+    .
+\end{equation*}
+%
+\textbf{i)} Explain why it is clear that the far-field flow is
+uniform (Acheson, p. 135).
+
+\textbf{ii)} Note that the script draws a thick black line representing
+the flat plate. But, there is evidence in MATLAB's branch cut in the
+`bunched'' dotted contours. To understand MATLAB's branch cut choice for
+the square root better, change the script to evaluate $\Phi$ using
+%
+\begin{equation*}
+    \Phi(z) = (z + i)^{1/2} (z - i)^{1/2}
+    .
+\end{equation*}
+%
+Now use polar coordinates, as in lecture, to explain how MATLAB chooses
+its square root branch cut.
+
+\textbf{iii)} An additional caution arises when you are asked to take
+the derivative of $\Phi$ to evaluate the velocities
+%
+\begin{equation*}
+    \dod{\Phi}{z} = u(x, y) - i v(x, y)
+    .
+\end{equation*}
+%
+It is almost never taught how to think about differentiation in the
+presence of a branch choice. The proper power rule for $z^n$ is
+%
+\begin{equation*}
+    \dod{}{z} z^n = n \frac{z^n}{z}
+    ,
+\end{equation*}
+%
+where the branch choice is the same as for the function evaluation of
+$z^n$. Derive the velocity formulas and modify a previous (quiver)
+script to show that the branch cut discontinuity of $\Phi$ does not
+affect the continuity of the flow arrows (property 4b-iii from lecture).
+
+\textbf{iv)} Finally, the MATLAB finesse for this flow problem is to
+define instead
+%
+\begin{equation*}
+    \Phi(z) = -i (i z + 1)^{1/2} (i z - i)^{1/2}
+    .
+\end{equation*}
+%
+Change the script to show that now the branch cut is exactly along the
+flat plate (property 4b-i from lecture).
+
+\textbf{v)} Note that this type of flow makes an appearance in
+Sebastian's parking lot video that is posted on the lecture notes page
+(week 3). Include a zoomed-in snapshot of this feature in your
+submission.
+
+\textbf{Extra:} Explain why the branch cut appears where it does for the
+original expression for $\Phi(z)$. This might be difficult.
+
+\newpage
+
+\textbf{Solution.} hey
+
+NOTE THeRE"S AN EXTRA PROBLEM TOO (OPTIONAL) BUT I DOUBT ILL HAVE TIME FOR IT.
+
+\end{document}
