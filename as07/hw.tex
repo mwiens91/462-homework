@@ -1,0 +1,115 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\def\*#1{\mathbf{#1}}
+\newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
+
+\newcommand{\fS}{\mathcal{S}} % fancy S
+\newcommand{\tphi}{\tilde{\phi}}
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\omegavec}{\boldsymbol{\omega}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Assignment 7} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-03-04}
+
+\textbf{A) Flow past the wall.} (2 pages, 10pts) Consider a potential
+flow as defined by the conformal map $w = \Phi(z)$, where $w = \phi + i
+\psi$ and $\Phi(z) = \sqrt{z^2 + 1}$. The streamlines in the $z$-plane
+are curves of constant imaginary $w$. Consider only the mapping of the
+upper half $z$-plane to the upper half $w$-plane---this also uniquely
+defines the branch of the square root.
+
+\textbf{i)} Clearly state the branch choice of the square root (i.e.,
+specify how to uniquely evaluate the square root). Then, determine the
+pre-image of the $\Re(w)$-axis.
+
+\textbf{ii)} Find the equation of the streamline curve in the $z$-plane
+which is the pre-image of the coordinate line identified by $\Im(w) =
+\psi$ in the $w$-plane. Express as an equation in the form $F(x, y;
+\psi) = 0$.
+
+\textbf{iii)} Then, find an equation of the curve in the $z$-plane which
+is the pre-image of the coordinate line identified by $\Re(w) \phi$ in
+the $w$-plane. Express as an equation of the form $G(x, y; \phi) = 0$.
+
+\textbf{iv)} Show by an explicit calculation that these two pre-image
+curves are orthogonal in the $z$-plane.
+
+\textbf{Solution}
+
+see figure in hw posting
+
+\newpage
+
+\textbf{B) Outflow from a source.} (3 pages, 10pts) Consider the
+potential flow as defined by the complex potential
+%
+\begin{equation*}
+    \Phi(z) = U z + \frac{Q}{2 \pi} \log z
+\end{equation*}
+%
+for $z \neq 0$. The flow above is uniform flow past a source point
+(plotted for $U = 1, Q= 2$). In this problem, you are asked to calculate
+the volume flux (per unit height $z$) emanating from the origin in three
+different ways:
+
+\textbf{i)} by an integration involving the radial velocity on circles
+$r = a$,
+
+\textbf{ii)} by an integration of the complex potential on arbitrary
+closed contours enclosing the origin exactly once, and
+
+\textbf{iii)} by an explicit identification of the separating
+streamlines (first, express the streamlines using the polar form $z = r
+e^{i \theta}$). (You will have to address how the branch cut is
+defined.)
+
+Next, calculate the limiting gap $\Delta y$ between the separating
+streamlines as $\Re(z) \to \infty$ in two different ways:
+
+\textbf{iv)} by the streamline expression from \textbf{iii)}, and
+
+\textbf{v)} by a deduction involving the volume flux.
+
+\textbf{Solution}
+
+see figure in hw posting
+
+\end{document}
