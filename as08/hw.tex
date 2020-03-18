@@ -1,0 +1,123 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\newcommand{\R}{\mathbb{R}}
+
+\def\*#1{\mathbf{#1}}
+\newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
+
+\newcommand{\fS}{\mathcal{S}} % fancy S
+\newcommand{\tphi}{\tilde{\phi}}
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\omegavec}{\boldsymbol{\omega}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Assignment 8} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-03-18}
+
+\textbf{A) Surface water wave in a layer.} (4 pages + plot)
+Extend the 1D analysis from lecture to the geometry of a finite-depth
+layer with an interface between two fluids characterized by different
+densities, $\rho_1 < \rho_2$, where the lighter fluid is on top. For
+the case of no waves, place the interface at $z = 0$ with the top layer
+at $y = T$ and the bottom at $y = -B$. We will assume potential flow
+(zero-divergence, constant density in each fluid, and irrotational) for
+both fluids
+
+i) Begin by explaining why we have two Bernoulli constants
+$H_1 = p_0 / \rho_1$ and $H_2 = p_0 / \rho_2$, where $p_0$ is the
+interface pressure in the absence of waves.
+
+ii) For an interface displacement $y = \eta(x, t)$, you should be able
+to state the complete nonlinear PDE problem for the surface water wave
+problem.
+
+iii) State the linearized PDE problem for the fixed geometry problem with
+approximate interface conditions that are applied at $y = 0$.
+
+iv) The solutions for sinusoidal potentials $\phi_1(x, y, t)$ and
+$\phi_2(x, y, t)$ proceeds as discussed in class.
+
+v) Obtain the dispersion relation $\omega(k)$ for waves having the form
+$\sin(k x - \omega t)$.
+
+vi) Discuss two features of your analysis: the effects to wavespeed on depth
+of the lower fluid, and the frequency of the wave on density contrast
+$\rho_1 / \rho_2$. Do your results hold in the limits $T, B \to \infty$,
+and $\rho_1 / \rho_2 \to 0$?
+
+\newpage
+
+\textbf{Solution}
+
+\newpage
+
+\textbf{B) Music of the sphere.} (3 pages)
+This problem is based on \#3.13 in Acheson, and requires reading of section 3.6
+of the chapter on waves.
+
+i) Starting from the compressible Euler equations in coordinate-free
+form (as in equations 3.55 and 3.56) with adiabatic thermodynamics, show
+that the linearization about a quiet state $\rho = \rho_0$ and $\*u =
+\*0$ gives a 3D wave equation for the density. Specialize this result
+for a spherically symmetric wave.
+
+ii) For a spherical shell of radius $L$, derive the eigenvalue relation
+for the natural (temporal) frequencies, $\omega$, of the interior
+standing waves
+%
+\begin{equation*}
+    \tan \frac{\omega L}{c} = \frac{\omega L}{c}
+    .
+\end{equation*}
+%
+(The natural frequencies are associated with separation of variables
+solutions having the form $\rho(r, t) = f(r) \cos(\omega t)$.) Explain
+why the boundary conditions of bounded density at the origin and zero
+velocity at $r = L$ are reasonable choices.
+
+iii) Numerically calculate the first three eigenfunctions (as multiples of
+$c / L$), and comment upon whether you think the \textit{music of this sphere}
+would be a truly harmonious sound.
+
+\newpage
+
+\textbf{Solution}
+
+\end{document}
