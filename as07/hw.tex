@@ -15,6 +15,8 @@
 \usepackage{commath}
 
 % Math notation macros
+\newcommand{\R}{\mathbb{R}}
+
 \def\*#1{\mathbf{#1}}
 \newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
 
@@ -66,15 +68,140 @@ which is the pre-image of the coordinate line identified by $\Im(w) =
 \psi) = 0$.
 
 \textbf{iii)} Then, find an equation of the curve in the $z$-plane which
-is the pre-image of the coordinate line identified by $\Re(w) \phi$ in
+is the pre-image of the coordinate line identified by $\Re(w) = \phi$ in
 the $w$-plane. Express as an equation of the form $G(x, y; \phi) = 0$.
 
 \textbf{iv)} Show by an explicit calculation that these two pre-image
 curves are orthogonal in the $z$-plane.
 
+\newpage
+
 \textbf{Solution}
 
-see figure in hw posting
+\textbf{i)} Take the branch choice of the square root to be
+%
+\begin{equation*}
+    \sqrt{z} = r^{\frac{1}{2}} e^{i \frac{\theta}{2}}, \quad \theta \in [0, 2 \pi)
+    ,
+\end{equation*}
+%
+then $\Phi$ takes $z$,
+squares it---thus extending it to the full complex plane---shifts it to
+the right by one, and then contracts it back to the upper half-plane.
+
+Now, we'll find all $z$ such that $\Phi(z) \in \R$. Then, writing $z = x
++ i y$,  we have
+%
+\begin{equation*}
+   \sqrt{x^2 - y^2 + 1 + i 2 x y} \in \R
+   .
+\end{equation*}
+%
+Then we require the imaginary part of the the argument of the square
+root to vanish, and hence either $x = 0$ or $y = 0$. Also, the argument
+of the square root needs to be non-negative. Thus we have
+%
+\begin{equation*}
+    \text{pre-image of $\Re(w)$} = \Re(z)  \cup \cbr{z: 0 \leq \Im(z) \leq 1 \text{ and } \Re(z) = 0}
+    ,
+\end{equation*}
+%
+where we considered only the upper half $z$-plane.
+
+\textbf{ii)} We can square both sides our equation for $w$
+to get
+%
+\begin{equation}
+    \phi^2 - \psi^2 + i 2 \phi \psi = x^2 - y^2 + 1 + i 2 x y
+    \label{eq:a-sqrd}
+    .
+\end{equation}
+%
+Equating real and imaginary parts we can express
+%
+\begin{equation*}
+    \phi = \frac{x y}{\psi}
+\end{equation*}
+%
+and thus
+%
+\begin{equation*}
+    \frac{x^2 y^2}{\psi^2} - \psi^2 = x^2 - y^2 + 1
+    .
+\end{equation*}
+%
+Hence we can write curves of constant $\psi$ as
+%
+\begin{equation*}
+    F(x, y; \psi) = x^2 - y^2 + 1 + \psi^2 - \frac{x^2 y^2}{\psi^2} = 0
+    .
+\end{equation*}
+%
+\textbf{iii)} Now we'll perform a similar trick, instead this time for
+curves of constant $\phi$. From~\eqref{eq:a-sqrd} we can express
+%
+\begin{equation*}
+    \psi = \frac{x y}{\phi}
+\end{equation*}
+%
+and thus
+%
+\begin{equation*}
+    \phi^2 - \frac{x^2 y^2}{\phi^2} = x^2 - y^2 + 1
+    .
+\end{equation*}
+%
+Hence our curves of constant $\phi$ are given by
+%
+\begin{equation*}
+    G(x, y; \phi) = x^2 - y^2 + 1 - \phi^2 + \frac{x^2 y^2}{\phi^2} = 0
+    .
+\end{equation*}
+%
+\textbf{iv)} First let's find where the curves $F$ and $G$ intersect.
+Using Wolfram Alpha, $F(x, y; \psi) = G(x, y; \phi)$ implies
+%
+\begin{equation*}
+    x = \pm \frac{\psi \phi}{y}, \quad y \neq 0, \quad \psi \phi \neq 0
+    .
+\end{equation*}
+%
+Computing $\nabla F$ and $\nabla G$, we have
+%
+\begin{align*}
+    \nabla F &= \del{
+        2 x \del{1 - \frac{y^2}{\psi^2}},
+        - 2 y \del{1 + \frac{x^2}{\psi^2}}
+    }, \\
+    \nabla G &= \del{
+        2 x \del{1 + \frac{y^2}{\phi^2}},
+        - 2 y \del{1 - \frac{x^2}{\phi^2}},
+    }
+\end{align*}
+%
+and thus
+%
+\begin{align*}
+    \nabla F \cdot \nabla G
+        &= 4 x^2 \del{1 - \frac{y^2}{\psi^2}} \del{1 + \frac{y^2}{\phi^2}}
+            + 4 y^2 \del{1 + \frac{x^2}{\psi^2}} \del{1 - \frac{x^2}{\phi^2}} \\
+        &= 4 \frac{\psi^2 \phi^2 (x^2 + y^2) - x^4 y^2 - x^2 y^4}{\psi^2 \phi^2}
+        .
+\end{align*}
+%
+Using that $x y = \pm \psi \phi$ when the curves intersect, at the
+intersection of the curves, the dot product of the gradients is
+%
+\begin{align*}
+    \nabla F \cdot \nabla G
+        &= 4 \frac{x^2 y^2 (x^2 + y^2) - x^4 y^2 - x^2 y^4}{x^2 y^2} \\
+        &= 4 \frac{x^4 y^2 + x^2 y^4 - x^4 y^2 - x^2 y^4}{x^2 y^2} \\
+        &= 0
+        .
+\end{align*}
+%
+This shows us that for all intersections of the pre-image curves, the
+two curves are orthogonal.
 
 \newpage
 
@@ -108,8 +235,139 @@ streamlines as $\Re(z) \to \infty$ in two different ways:
 
 \textbf{v)} by a deduction involving the volume flux.
 
+\newpage
+
 \textbf{Solution}
 
-see figure in hw posting
+\textbf{i)} Expressing $z = r e^{i \theta}$, we can express $\Phi$ as
+%
+\begin{equation}
+    \Phi(r, \theta) = U r \cos \theta + \frac{Q}{2 \pi} \log r
+    + i \del{U r \sin \theta + \frac{Q}{2 \pi} \theta}
+    \label{eq:b-i}
+    .
+\end{equation}
+%
+Here we'll take $\theta \in [0, 2 \pi)$. The radial velocity $v$ is
+given by the $r$-component of $\nabla \phi = \nabla \Re(\Phi)$:
+%
+\begin{equation*}
+    v = \dpd{\phi}{r} = U \cos \theta + \frac{Q}{2 \pi r}
+    .
+\end{equation*}
+%
+Hence the volume flux (per unit $z$-height) calculated on circles $r =
+a$ is given by
+%
+\begin{equation*}
+    \int_0^{2 \pi} v(a, \theta) (a \dif \theta)
+        = \int_0^{2 \pi} \del{a U \cos \theta + \frac{Q}{2 \pi}} \dif \theta
+        = Q
+        .
+\end{equation*}
+%
+\textbf{ii)} Now we'll calculate the same quantity using the Laurent
+series of $\dod{\Phi^*}{z}$. Note that we identify $\dod{\Phi^*}{z}$ with
+the velocity $\*u$. Now,
+%
+\begin{equation*}
+    \dod{\Phi^*}{z}
+        = \del{U + \frac{Q}{2 \pi z}}^*
+\end{equation*}
+%
+Let $C$ be a contour enclosing the origin exactly once, oriented
+\textit{clockwise} (this lets us drop the complex conjugate above).
+Then, noting that $i \dif z$ represents the outward normal direction on
+each segment of the contour $\dif z$, we have, using the Residue theorem
+(modified for a clockwise contour), the velocity flux given by
+%
+\begin{equation*}
+    \oint_C \dod{\Phi^*}{z} i \dif z
+        = \oint_C \del{U + \frac{Q}{2 \pi z}} i \dif z
+        = (- 2 \pi i) \frac{Q}{2 \pi} i
+        = Q
+        .
+\end{equation*}
+%
+\textbf{iii)} Now we will calculate the velocity flux by identifying the
+separating streamlines using~\eqref{eq:b-i}. As was discussed above,
+we're taking the branch cut along $\theta = 0$. The streamfunction
+identified in~\eqref{eq:b-i} is
+%
+\begin{equation*}
+    \psi = U r \sin \theta + \frac{Q}{2 \pi} \theta
+    .
+\end{equation*}
+%
+To find the separating streamlines, we first need to find where the
+velocity is $\*0$. This requires
+%
+\begin{equation*}
+    \nabla \phi = \del{U \cos \theta + \frac{Q}{2 \pi r}, - U \sin \theta} = \*0
+    .
+\end{equation*}
+%
+which implies
+%
+\begin{equation*}
+    \theta = \pi, \ r = \frac{Q}{2 \pi U}
+    .
+\end{equation*}
+%
+The value of the streamfunction at this point is clearly $\psi =
+\frac{Q}{2}$. Contours of $\psi = \frac{Q}{2}$---the separating
+streamlines---are thus given by
+%
+\begin{equation*}
+    U r \sin \theta + \frac{Q}{2 \pi} \theta = \frac{Q}{2}
+    .
+\end{equation*}
+%
+Now, using our above formula for $\psi$, note that as $\theta \to 0$,
+$\psi \to 0$; and as $\theta \to 2 \pi$, $\psi \to Q$. Hence, we have
+that the volume flux per unit height above the real axis is
+%
+\begin{equation*}
+    \Delta \psi = \frac{Q}{2} - 0 = \frac{Q}{2}
+\end{equation*}
+%
+and below the real axis is
+%
+\begin{equation*}
+    \Delta \psi = Q - \frac{Q}{2} = \frac{Q}{2}
+\end{equation*}
+%
+In class we were told that the volume flux per unit height across an
+area is $\Delta \psi$. Hence, summing the two $\Delta \psi$ terms we
+have above (which cover the cross-sections of the area in the inner
+region), we see that the volume flux per unit height is simply $Q$.
+
+\textbf{iv)} Now we want to find the limiting gap $\Delta y$ between
+separating streamlines. First, let's substitute $y = r \sin \theta$ into
+the equation for the separating stream from above, and solve for y:
+%
+\begin{equation*}
+    y = \frac{Q}{2 U} \del{1 - \frac{\theta}{\pi}}
+\end{equation*}
+%
+Note that for the portion above the real axis, in the limit as $\Re(z)
+\to \infty$, $\theta \to 0$; and below the real axis, in this same limit
+we have that $\theta \to 2 \pi$. Hence we have that in the limit as
+$\Re(z) \to \infty$,
+%
+\begin{equation*}
+    \Delta y
+        = y_{\text{above}} - y_{\text{below}}
+        = \frac{Q}{2 U} \del{1 - \frac{0}{\pi}}
+            - \frac{Q}{2 U} \del{1 - \frac{2 \pi}{\pi}}
+        = \frac{Q}{U}
+    .
+\end{equation*}
+%
+\textbf{v)} First, notice that in our expression for the velocity
+$\nabla \phi$ above, that as $\Re(z) \to \infty$ either $\theta \to 0$
+or $\theta \to 2 \pi$, and in either case $\nabla \phi \to (U, 0)$.
+Hence the volume flux in this limit must be $U \Delta y$. Combining this
+with our above results, this implies that $\Delta y = \frac{Q}{U}$.
 
 \end{document}
