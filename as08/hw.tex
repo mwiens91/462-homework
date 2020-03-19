@@ -16,8 +16,10 @@
 
 % Math notation macros
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
 
 \def\*#1{\mathbf{#1}}
+\def\ti#1{\tilde{#1}}
 \newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
 
 \newcommand{\fS}{\mathcal{S}} % fancy S
@@ -86,6 +88,44 @@ and $\rho_1 / \rho_2 \to 0$?
 
 \textbf{Solution}
 
+i) The reason we have two Bernoulli constants is because we can view the
+problem from the top of the interface or from the bottom---essentially
+two separate problems.
+
+ii) Each ``Bernoulli II'' will give us an equation, while we also have
+the equations coming from the advective derivatives. The system of
+equations is as follows (which hold on $y = \eta(x, t)$:
+%
+\begin{equation*}
+    \begin{dcases}
+        \dpd{\phi_1}{t} + g \eta(x, t) + \frac{1}{2} |\*u_1|^2 = 0 \\
+        \dpd{\phi_2}{t} + g \eta(x, t) + \frac{1}{2} |\*u_2|^2 = 0 \\
+        v_1 - \eta_t - u_1 \eta_x = 0 \\
+        v_2 - \eta_t - u_2 \eta_x = 0
+    \end{dcases}
+    .
+\end{equation*}
+
+iii) In linearizing the PDE, we throw out all quadratic (or greater)
+perturbation terms, which leaves us with
+%
+\begin{equation*}
+    \begin{dcases}
+        \dpd{\phi_1}{t} + g \eta(x, t) = 0 \\
+        \dpd{\phi_2}{t} + g \eta(x, t) = 0 \\
+        v_1 - \eta_t = 0 \\
+        v_2 - \eta_t = 0
+    \end{dcases}
+    .
+\end{equation*}
+
+This implies that $\phi_1 = \phi_2$ on $\eta(x, t)$, which is
+consistent, but I'm definitely missing something. I don't think I know
+how to interpret the problem correctly.
+
+I will try and make sure I have someone reliable to talk to about the
+homework next time.
+
 \newpage
 
 \textbf{B) Music of the sphere.} (3 pages)
@@ -119,5 +159,165 @@ would be a truly harmonious sound.
 \newpage
 
 \textbf{Solution}
+
+i) The form of the Euler equations of motion we need to concern
+ourselves with are
+%
+\begin{equation}
+    \rho \del{\dpd{\*u}{t} + \*u \cdot \nabla \*u} = - \nabla p
+    ,
+    \label{eq:b-mom}
+\end{equation}
+%
+and
+%
+\begin{equation}
+    \dpd{\rho}{t} + \nabla \cdot \del{\rho \*u} = 0
+    .
+    \label{eq:b-cons}
+\end{equation}
+%
+Additionally, assuming the gas is ``perfect'' gives us
+%
+\begin{equation}
+    \dadvd{}{t} \del{p \rho^{-\gamma}} = 0
+    ,
+    \label{eq:b-adiab}
+\end{equation}
+%
+where $\gamma$ is the thermodynamic constant discussed in lectures.
+
+Assume that $\rho = \rho_0 (1 + \ti{\rho})$, $\*u = \ti{\*u}$, where
+$\ti{\rho}$ and $\ti{\*u}$ are small. We will also assume pressure
+variations are small; that is, $p = p_0 (1 + \ti{p})$. We can
+use~\eqref{eq:b-adiab} to express the pressure perturbations $\ti{p}$ in
+terms of $\ti{\rho}$. Since each fluid element initially has pressure
+$p_0$ and density $\rho_0$,~\eqref{eq:b-adiab} implies
+%
+\begin{align*}
+    &p_0 \rho_0^{- \gamma} = \del{p_0 (1 + \ti{p})} \del[1]{\rho_0 (1 + \ti{\rho})}^{- \gamma} \\
+    &\iff (1 + \ti{p}) (1 + \ti{\rho})^{-\gamma} = 1
+\end{align*}
+%
+Taking a binomial approximation we have $(1 + \ti{p}) (1 - \gamma
+\ti{\rho}) = 1$, and, neglecting quadratic terms, this implies that
+$\ti{p} = \gamma \ti{\rho}$.
+
+Our goal is to use all of the equations to write
+%
+\begin{equation}
+    \dpd[2]{\ti{\rho}}{t} = c^2 \nabla^2 \ti{\rho}
+    ,
+    \label{eq:b-wave}
+\end{equation}
+%
+where $c$ is a to-be-determined constant.
+
+Now, since $\*u \, (= \ti{\*u})$ is small, we can simplify (by
+neglecting quadratic terms in our perturbations)~\eqref{eq:b-mom} to
+%
+\begin{equation}
+    \rho_0 \dpd{\ti{\*u}}{t} = - \nabla p = - \gamma \nabla \rho
+    ,
+    \label{eq:b-mom-s}
+\end{equation}
+%
+and~\eqref{eq:b-cons} to
+%
+\begin{equation}
+    \dpd{\ti{\rho}}{t} + \rho_0 \nabla \cdot \ti{\*u} = 0
+    .
+    \label{eq:b-cons-s}
+\end{equation}
+%
+Note that~\eqref{eq:b-cons-s} implies
+%
+\begin{equation}
+    \nabla \cdot \ti{\*u} = - \frac{1}{\rho_0} \dpd{\ti{\rho}}{t}
+    .
+    \label{eq:b-cons-s2}
+\end{equation}
+%
+Hence taking the divergence of~\eqref{eq:b-mom-s} we have
+%
+\begin{align*}
+    &\rho_0 \dpd{}{t} \del{\nabla \cdot \ti{\*u}} - \gamma \nabla^2 \rho \\
+    &\iff \dpd[2]{\ti{\rho}}{t} = \gamma \nabla^2 \rho
+    ;
+\end{align*}
+%
+note that we have assumed that $\pd{}{t}$ commutes with $\nabla \cdot$
+above. Thus we have obtained~\eqref{eq:b-wave} where the wave speed $c =
+\pm \sqrt{\gamma}$. If our wave is spherically symmetric then we only
+need to worry about the $r$ derivatives and hence have
+%
+\begin{equation*}
+    \dpd[2]{\ti{\rho}}{t} = c^2 \frac{1}{r^2} \dpd{}{r} \del{r^2 \dpd{\ti{\rho}}{r}}
+    .
+\end{equation*}
+
+ii) Write $\rho(r, t) = f(r) \cos(\omega t)$ we can plug this into our
+above equation and simplify to write
+%
+\begin{equation*}
+    \omega^2 f + c^2 \frac{1}{r^2} \dod{}{r} \del{r^2 \dod{f}{r}} = 0
+    ,
+\end{equation*}
+%
+or, in the form,
+%
+\begin{equation*}
+    \dod{\del{r^2 f^\prime(r)}}{r} = - k^2 r^2 f(r)
+    .
+\end{equation*}
+%
+where $k = \omega / c$. According to Wolfram Alpha, the solutions to
+this equation are
+%
+\begin{equation*}
+    f(r) = c_1 \frac{1}{r} \cos(k r) + c_2 \frac{1}{2 k r} \sin(k r)
+    .
+\end{equation*}
+%
+Hence we have that
+%
+\begin{equation*}
+    \rho(r, t) = \cos(\omega t) \del{c_1 \frac{1}{r} \cos(k r) + c_2 \frac{1}{2 k r} \sin(k r)}
+    .
+\end{equation*}
+%
+Now we need to apply the boundary conditions. The boundary conditions we
+are given are that $\rho = \rho_c$ at the origin and $\pd{\rho}{t} = 0$
+at $r = L$. The first boundary condition means we must take $c_1 = 0$,
+which leaves us with
+%
+\begin{equation*}
+    \rho(r, t) = c_2 \frac{1}{2 k r} \cos(\omega t) \sin(k r)
+    .
+\end{equation*}
+%
+At $r = L$, the time derivative boundary is
+%
+\begin{equation*}
+    - c_2 \frac{\omega}{2 k L} \sin(\omega t) \sin(k L) = 0
+    .
+\end{equation*}
+%
+This implies that $k = \omega / c = \frac{n \pi}{L}$ with $n \in \Z$.
+This isn't consistent with the result I was meant to derive, so
+I believe I've made an error above.
+
+iii) The first three eigenfrequencies calculated numerically are
+%
+\begin{align*}
+    \omega_0 &= 0, \\
+    \omega_1 &\approx 4.4934 \frac{c}{L}, \\
+    \omega_2 &\approx 7.7253 \frac{c}{L}, \\
+    \omega_3 &\approx 10.9041 \frac{c}{L}
+    .
+\end{align*}
+%
+These sound great together! I played all frequencies together taking $c
+/ L = 100 \text{Hz}$ and it made a nice chord.
 
 \end{document}
