@@ -1,0 +1,249 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{commath}
+
+% Math notation macros
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bs}{\text{BS}}
+\newcommand{\uf}{\text{UF}}
+
+\def\*#1{\mathbf{#1}}
+\def\ti#1{\tilde{#1}}
+\newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
+
+\newcommand{\fS}{\mathcal{S}} % fancy S
+\newcommand{\tphi}{\tilde{\phi}}
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\omegavec}{\boldsymbol{\omega}}
+
+% Links
+\usepackage{hyperref}
+
+% Page numbers at top right
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand\headrulewidth{0pt}
+
+% Graphics
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\textbf{MATH 462 Assignment 10} \\
+\textbf{Matt Wiens \#301294492} \\
+\textbf{2020-04-05}
+
+\textbf{101) Rankine-Hugoniot Conditions.} (3 pages)
+The global conservation property was demonstrated for the equation
+$\rho_t + (\rho u)_x = 0$. It was then shown that a solution that was
+piecewise regular with a moving discontinuity $x = S(t)$ resulted in a
+jump condition---but some steps were skipped. Present the skipped step
+by grouping the integration terms to isolate the Rankine-Hugoniot jump
+condition. The jump condition from the conservation of momentum was
+shown to be
+%
+\begin{equation*}
+    S^\prime(t) \sbr{\rho u} = \sbr{\rho u^2 + p}
+    ,
+\end{equation*}
+%
+but was not derived. As in lecture, present the regular conservation
+principle for momentum, and then derive the Rankine-Hugoniot jump
+condition at a moving discontinuity.
+
+Lastly, say we have a shock propagating to the right with $u_1 >
+S^\prime > u_0$, so that the flow is slowing down across the shock.
+Define upstream (to the right) conditions $(u_0, p_0, \rho_0)$, and
+behind the shock conditions $(u_1, p_1, \rho_1)$. Solve for $p_1$ and
+$\rho_1$ in terms of the other variables, and discuss the sign of the
+jumps in these variables as the shock passes by.
+
+\newpage
+
+\textbf{Solution}
+
+First we'll cover the basic conservation principles for the acoustic
+equations, and then show what happens for the piston discussed in class
+which goes from the piston point $x_p(t)$ to $L$ where we have for $t >
+t_s$, a jump condition at $x = S(t)$ (the $t < t_s$ case with no jump
+condition was show in lectures).
+
+The conservation form of the acoustic equations, from lectures, is
+%
+\begin{equation*}
+    \begin{dcases}
+        \rho_t + \del{\rho u}_x = 0 \\[2pt]
+        \del{\rho u }_t + \del{\rho u^2 + p}_x = 0
+    \end{dcases}
+    .
+\end{equation*}
+%
+For $t > t_s$ in our piston we have a discontinuity at $x = S(t)$, and
+hence we can write the global conservation of mass as
+%
+\begin{equation*}
+    \int_{x_p}^S \del{\rho_t + \del{\rho u}_x} \dif x
+        + \int_{S}^L \del{\rho_t + \del{\rho u}_x} \dif x
+        = 0
+        .
+\end{equation*}
+%
+For the $t$ partial derivatives in the integrands we can interchange the
+integral and derivative using the Leibniz rule; hence we have,
+%
+\begin{align*}
+    \int_{x_p}^S \rho_t \dif x
+        &= \dod{}{t} \del{\int_{x_p}^S \rho \dif x}
+            + \rho(x_p, t) \dod{x_p}{t}
+            - \rho_\bs(S, t) \dod{S}{t}
+            ,
+    \\
+    \int_S^L \rho_t \dif x
+        &= \dod{}{t} \del{\int_S^L \rho \dif x}
+            + \rho_\uf(S, t) \dod{S}{t}
+            .
+\end{align*}
+%
+Note that $L$ does not depend on time, so the Leibniz term for $L$
+vanished; also, for the densities on either side of the shock we have
+used the ``BS'' and ``UF'' naming conventions from lecture. Using the
+above results and writing
+%
+\begin{equation*}
+    \dod{x_p}{t} = u(x_p, t)
+    ,
+\end{equation*}
+%
+we have
+%
+\begin{align*}
+    0 &= \int_{x_p}^S \del{\rho_t + \del{\rho u}_x} \dif x
+        + \int_{S}^L \del{\rho_t + \del{\rho u}_x} \dif x
+    \\
+    &=
+    \int_{x_p}^S \rho_t \dif x
+        + \int_{S}^L \rho_t \dif x
+        + \int_{x_p}^S \del{\rho u}_x \dif x
+        + \int_{S}^L \del{\rho u}_x \dif x
+    \\
+    &=
+    \del{
+        \dod{}{t} \del{\int_{x_p}^S \rho \dif x}
+        + \rho(x_p, t) u(x_p, t)
+        - \rho_\bs(S, t) \dod{S}{t}
+    }
+    + \del{
+        \dod{}{t} \del{\int_S^L \rho \dif x}
+        + \rho_\uf(S, t) \dod{S}{t}
+    }
+    \\
+    &\qquad
+    + \eval[2]{\del{\rho u}}_{x_p}^S
+        + \eval[2]{\del{\rho u}}_{S}^L
+\end{align*}
+%
+In the last line of the above equation note that the $\rho(L, t) u(L,
+t)$ term vanishes because $u$ is $0$ in the undisturbed fluid, and we
+also have cancellation in the $\rho(x_p, t) u(x_p, t)$ terms. Taking
+these points into account and grouping terms, we thus have
+%
+\begin{equation*}
+    \dod{}{t} \del{
+        \int_{x_p}^S \rho \dif x
+        + \int_S^L \rho \dif x
+    }
+    + \dod{S}{t} \del{\rho_\uf(S, t) - \rho_\bs(S, t)}
+    + \del{\rho u}_\bs(S, t) - \del{\rho u}_\uf(S, t) = 0
+    .
+\end{equation*}
+%
+Because mass is conserved from one end of the piston to the end of its
+container, the first term vanishes and we are left with, at $x = S$,
+%
+\begin{equation*}
+    \dod{S}{t} \eval[2]{\rho}_\bs^\uf = \eval[2]{\rho u}_\bs^\uf
+    .
+\end{equation*}
+%
+I won't repeat this calculation for the momentum equation since the
+steps are identical; however, I will comment on two (possibly
+non-trivial) differences: (i) in the momentum case, we have cancellation
+in the $\rho(x_p, t) u(x_p, t)$ terms; and (ii) we invoke that momentum
+is conserved across the piston to the end of its container to justify
+that
+%
+\begin{equation*}
+    \dod{}{t} \del{
+        \int_{x_p}^S \rho u \dif x
+        + \int_S^L \rho u \dif x
+    } = 0
+    .
+\end{equation*}
+%
+After carrying out the steps for the global conservation of momentum equation
+%
+%
+\begin{equation*}
+    \int_{x_p}^S \del{\del{\rho u}_t + \del{\rho u^2 + p}_x} \dif x
+        + \int_S^L \del{\del{\rho u}_t + \del{\rho u^2 + p}_x} \dif x
+        = 0
+        .
+\end{equation*}
+%
+(the same steps we performed for the global conservation of mass
+equation) we are left with
+%
+\begin{equation*}
+    \dod{S}{t} \eval[2]{\rho u }_\bs^\uf = \eval[2]{\del{\rho u^2 + p}}_\bs^\uf
+    .
+\end{equation*}
+%
+Now we're asked to consider what the values of $p_1$ and $\rho_1$ are
+for the shock propagating to the right with $u_0 < S^\prime < u_1$.
+Using our above Rankine-Hugoniot conditions, we have a system of two
+equations in two unknowns:
+%
+\begin{equation*}
+    \begin{dcases}
+        S^\prime (\rho_1 - \rho_0) = \rho_1 u_1 - \rho_0 u_0 \\
+        S^\prime (\rho_1 u_1 - \rho_0 u_0) = \rho_1 u_1^2 + p_1 - \rho_0 u_0^2 - p_0
+    \end{dcases}
+    .
+\end{equation*}
+%
+Solving this system, we get
+%
+\begin{align*}
+    p_1 &= \rho_0 (u_1 - u_0) (S^\prime - u_0) + p_0 \\
+    \rho_1 &= \frac{\rho_0 (S^\prime - u_0)}{S^\prime - u_1}
+    .
+\end{align*}
+%
+Our conditions imply that the density is negative, so, as was discussed
+in the online lecture today, there was obviously a mistake in the
+question posted. In terms of the $p_1$ variable, it should be clear that
+our conditions $u_0 < S^\prime < u_1$ guarantee $p_1 > p_0$.
+
+\end{document}
