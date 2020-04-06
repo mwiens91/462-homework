@@ -205,7 +205,7 @@ Moving forward to the shear stress, we need there to be a net zero force
 in the $z$ direction at $r = S$ and $r = R$ and hence a shear stress to
 balance the pressure force. Because the pressure force is in the
 positive $z$ direction, the shear force should be in the negative $z$
-direction. Calculating the shear stress, we have
+direction. Calculating the general formula for the shear stress, we have
 %
 \begin{align*}
     \tauvec_\rhat
@@ -214,6 +214,20 @@ direction. Calculating the shear stress, we have
         &= \frac{\Delta p}{4 L} \del{- 2 r + \frac{R^2 - S^2}{r \log\del{\frac{R}{S}}}} \zhat
         .
 \end{align*}
+%
+Evaluating the stress at our boundary walls we have
+%
+\begin{align*}
+    \eval[1]{\del{2 \pi r L \tauvec_\rhat}}_{r = R} - \eval[1]{\del{2 \pi r L \tauvec_\rhat}}_{r = S}
+        &= \frac{\pi \Delta p}{2} \del{- 2 R^2 + \frac{R^2 - S^2}{\log\del{\frac{R}{S}}}} \zhat
+           - \frac{\pi \Delta p}{2} \del{- 2 S^2 + \frac{R^2 - S^2}{\log\del{\frac{R}{S}}}} \zhat \\
+        &= - \pi \Delta p (R^2 - S^2) \\
+        &= - \text{pressure force}
+        ,
+\end{align*}
+%
+which is exactly what we would expect.
+
 
 \newpage
 
