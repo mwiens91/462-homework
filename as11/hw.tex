@@ -17,12 +17,13 @@
 % Math notation macros
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\bs}{\text{BS}}
-\newcommand{\uf}{\text{UF}}
 
 \def\*#1{\mathbf{#1}}
+\def\ti#1{\tilde{#1}}
 \newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
 
+\newcommand{\fS}{\mathcal{S}} % fancy S
+\newcommand{\tphi}{\tilde{\phi}}
 \newcommand{\nhat}{\mathbf{\hat{n}}}
 \newcommand{\rhat}{\mathbf{\hat{r}}}
 \newcommand{\thetahat}{\boldsymbol{\hat{\theta}}}
@@ -213,5 +214,124 @@ direction. Calculating the shear stress, we have
         &= \frac{\Delta p}{4 L} \del{- 2 r + \frac{R^2 - S^2}{r \log\del{\frac{R}{S}}}} \zhat
         .
 \end{align*}
+
+\newpage
+
+\textbf{202) Milne-Thomson circle theorem}
+In this problem I'm going to do the following:
+%
+\begin{itemize}
+    \item describe what the Milne-Thomson circle theorem states
+    \item prove the theorem
+    \item show an example
+    \item show another example (the ping pong ball)
+    \item explore whether we can extend this theorem to multiple circles
+\end{itemize}
+
+\textbf{The claim}
+
+The claim here is that for any potential flow $\Phi$ whose singular
+points lie in $|z| > a$, (i) we can preserve all singularities for $|z|
+> a$, and (ii) have $|z| = a$ as a streamline with a new complex
+potential
+%
+\begin{equation*}
+    \Phi_{mt}(z) = \Phi(z) + \del{\Phi \del{\frac{a^2}{z^*}}}^*
+    .
+\end{equation*}
+
+\textbf{Proof}
+
+For notational convenience, denote
+%
+\begin{equation*}
+    \ti{\Phi}(z) \coloneqq \del{\Phi \del{\frac{a^2}{z^*}}}^*
+    .
+\end{equation*}
+%
+To prove (i) we essentially need to show that there are no singularities
+of $\ti\Phi$ after $|z| > a$. Suppose that $z$ is a singular point of
+$\ti\Phi$. Then
+%
+\begin{equation*}
+    \ti\Phi(z) = \del{\Phi \del{\frac{a^2}{z^*}}}^*
+\end{equation*}
+%
+is a singularity. But since all singularities of $\Phi$ lie in $|z| >
+a$ this implies that
+%
+\begin{equation*}
+    \envert{\frac{a^2}{z^*}} > a
+    ,
+\end{equation*}
+%
+which further implies that $|z| < a$. Hence all singular points of
+$\ti\Phi$ lie in $|z| < a$ and thus the singularities for $|z| > a$ for
+$\Phi_{mt}$ are the same as for $\Phi$.
+
+Now we'll prove (ii), which states that $|z| = a$ is a streamline. To
+see this note that we can square the above expression to yield $z z^* =
+a^2$. Then we have that, on $|z| = a$
+%
+\begin{equation*}
+    \ti\Phi(z)
+        = \del{\Phi \del{\frac{a^2}{z^*}}}^*
+        = \del{\Phi \del{\frac{(z z^*)}{z^*}}}^*
+        = \del{\Phi(z)}^*
+\end{equation*}
+%
+and thus (still on the $|z| = a$)
+%
+\begin{equation*}
+    \Phi_{mt}(z) = \Phi(z) + \ti\Phi(z) = \Phi(z) + \del{\Phi(z)}^* = 2 \Re\del{\Phi(z)}
+    .
+\end{equation*}
+%
+Therefore $\Phi_{mt}(z)$ is purely real on the circle, and therefore
+$\psi_{mt} = 0$ on $|z| = a$ and hence this is a streamline.
+
+\textbf{An example}
+
+Let's just try this with a very simple example. Consider the potential
+flow $\Phi(z) = z$. Here we have $\phi = x$ and $\psi = y$. This gives
+us the familiar flow shown in Figure~\ref{fig:mt-1}.
+%
+\begin{figure}[!ht]
+    \includegraphics[width=35em]{mt_ex1_1}
+    \centering
+    \caption{Flow generated from $\Phi$}
+    \label{fig:mt-1}
+\end{figure}
+
+Now let's see what happens when we apply Milne-Thomson, taking $a = 2$. Then we have
+%
+\begin{equation*}
+    \Phi_{mt} = z + \frac{4}{z}
+    ,
+\end{equation*}
+%
+and hence
+%
+\begin{align*}
+    \phi_{mt} &= x + \frac{4 x}{x^2 + y^2}, \\
+    \psi_{mt} &= y - \frac{4 y}{x^2 + y^2}
+    .
+\end{align*}
+%
+The resulting flow is plotted below in Figure~\ref{fig:mt-2}. In this
+figure, the streamline $\psi = 0$ is plotted below in black, and we can
+see that it aligns perfectly with the circle $|z| = 2$. Note also that
+velocity quivers at $|z| < 1$ where not plotted, due to their large
+magnitude near the origin.
+%
+\begin{figure}[!ht]
+    \includegraphics[width=35em]{mt_ex1_2}
+    \centering
+    \caption{Flow generated from $\Phi_{mt}$}
+    \label{fig:mt-2}
+\end{figure}
+
+\textbf{Another example}
+
 
 \end{document}
