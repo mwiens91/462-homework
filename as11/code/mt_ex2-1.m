@@ -18,11 +18,11 @@ yc = linspace(-L,L,500);
 [tt,rr] = cart2pol(xx,yy);
 
 % Psi
-psi = yyc;
+psi = 2*xxc.*yyc;
 
 % Velocities
-uu = ones(size(xx));
-vv = 0*yy;
+uu = 2*xx;
+vv = -2*yy;
 
 % Start plot
 clf
@@ -40,4 +40,4 @@ axis square;
 contour(xc,yc,psi,[-5.25:0.5:5]);
 
 % Save image
-print -dpng ../img/mt_ex1_1.png
+print -dpng ../img/mt_ex2_1.png
