@@ -110,8 +110,8 @@ find that the general solution for $W$ is given by
 where $c_1$ and $c_2$ are constants that we need to determine.
 
 To determine the constants $c_1$ and $c_2$ we will invoke ``no-slip''
-boundary conditions at the walls of the pipe, so that $W(\pm S) = W(\pm
-R) = 0$. These conditions give us that
+boundary conditions at the walls of the pipe, so that $W(S) = W(R) =
+0$. These conditions give us that
 %
 \begin{equation*}
     - \frac{\Delta p}{4 \mu L} S^2 + c_1 \log S + c_2
@@ -252,7 +252,7 @@ In this problem I'm going to do the following:
 We're going to work in two dimensions here. Consider a fixed body which
 has a closed contour $\fC$ (taken with counter-clockwise orientation) as
 its boundary. Suppose we have a torque $\dtauvec$ about the origin due
-to a force $\dFvec$ acting at some point $\*x$ which lies along a smell
+to a force $\dFvec$ acting at some point $\*x$ which lies along a small
 element $\ds$ of $\fC$. This torque is thus given by
 %
 \begin{equation}
@@ -264,7 +264,7 @@ element $\ds$ of $\fC$. This torque is thus given by
 where for convenience we took $\dtau$ to be the $z$-component of
 $\dtauvec$ (the other components are identically 0). Switching to complex
 variables we will represent $\*x$ with $z = x + i y$ and $\dFvec$ with $\dF =
-\dF_x + i \dF_y$. Note that we can write~\eqref{eq:tor-1} as
+\dF_x + i \dF_y$. Note that we can now write~\eqref{eq:tor-1} as
 %
 \begin{equation}
     \dtau = \Re \cbr{z (\dF_y + i \dF_x)} = \Re \cbr{i z (\dF_x - i \dF_y)}
@@ -275,7 +275,8 @@ variables we will represent $\*x$ with $z = x + i y$ and $\dFvec$ with $\dF =
 Now that we've obtained the $\dF_x - i \dF_y$ term we essentially just
 need to follow Acheson's steps for obtaining the Blasius integral
 formula to get our desired equation for torque. For completeness, I will
-reproduce these steps here (using the notation we've been using in class).
+reproduce these steps here (using the notation we've been using in
+lectures).
 
 Considering Figure $4.8$ in Acheson (p. 140), the net force on $\ds$ is
 $(-p \sin \theta, p \cos \theta) \ds$ (where $p$ is the pressure acting
@@ -288,7 +289,7 @@ on $\ds$), and hence
     .
 \end{equation}
 %
-Since $\fC$ is a streamline we have that on $\fC$ (again, looking at the
+Since $\fC$ is a streamline, we have that on $\fC$ (again, looking at the
 Acheson figure is helpful)
 %
 \begin{align*}
@@ -313,8 +314,8 @@ are on a streamline) we can express
     ,
 \end{equation}
 %
-where $H_\infty$ is a constant, and so substituting~\eqref{eq:tor-5}
-into~\eqref{eq:tor-3} give us
+on $\fC$, where $H_\infty$ is a constant, and so
+substituting~\eqref{eq:tor-5} into~\eqref{eq:tor-3} give us
 %
 \begin{equation}
     \dF_x - i \dF_y
@@ -359,10 +360,10 @@ Dispensing with the ``real part'' notation for the moment, let us write
     \tidtau =
         i z \del{i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 \dz
         - i e^{- 2 i \theta} H_\infty \dz}
-    .
+    ,
 \end{equation*}
 %
-and taking the limit as $\delta \to 0$, integrate along $\fC$ and write
+and taking the limit as $\delta \to 0$, integrate along $\fC$ to obtain
 %
 \begin{equation*}
     \titau =
@@ -425,11 +426,11 @@ cylinder is given by
 \end{align*}
 %
 so the cylinder is rotationally stable, which makes sense. How does this
-generalize this example to \textit{any} body in a uniform flow? My
+example generalize to \textit{any} body in \textit{any} uniform flow? My
 intuition is that, provided the body is symmetric with respect to the
 orientation of flow, the torque will be $0$. However, this might even
 hold if the body isn't symmetric, although this isn't particularly
-intuitive for me.
+intuitive to me.
 
 \newpage
 
@@ -487,7 +488,7 @@ $\Phi_{mt}$ are the same as for $\Phi$.
 
 Now we'll prove (ii), which states that $|z| = a$ is a streamline. To
 see this note that we can square the above expression to yield $z z^* =
-a^2$. Then we have that, on $|z| = a$
+a^2$. Then we have that, on $|z| = a$,
 %
 \begin{equation*}
     \ti\Phi(z)
@@ -504,11 +505,11 @@ and thus (still on the $|z| = a$)
 \end{equation*}
 %
 Therefore $\Phi_{mt}(z)$ is purely real on the circle, and therefore
-$\psi_{mt} = 0$ on $|z| = a$ and hence this is a streamline.
+$\psi_{mt} = 0$ on $|z| = a$, and hence this is a streamline.
 
 \textbf{An example}
 
-Let's just try this with a very simple example. Consider the potential
+Let's try this with a very simple example. Consider the potential
 flow $\Phi(z) = z$. Here we have $\phi = x$ and $\psi = y$. This gives
 us the familiar flow shown in Figure~\ref{fig:mt-1}.
 %
@@ -519,7 +520,7 @@ us the familiar flow shown in Figure~\ref{fig:mt-1}.
     \label{fig:mt-1}
 \end{figure}
 
-Now let's see what happens when we apply Milne-Thomson, taking $a = 2$. Then we have
+Now let's see what happens when we apply Milne-Thomson, taking $a = 2$. This gives us
 %
 \begin{equation*}
     \Phi_{mt}(z) = z + \frac{4}{z}
@@ -648,6 +649,7 @@ in the Blasius integral formula:
     \del{\Phi^\prime_{mt2}}^2
         = \del{0.2 - \frac{2}{z^3} - \frac{0.2}{z^2} + 2 z}^2
         = \frac{4}{z^6} + \frac{0.8}{z^5} + \frac{0.04}{z^4} - \frac{0.08}{z^3} - \frac{8.08}{z^2} - \frac{0.8}{z} + 0.04 + 0.8 z + 4 z^2
+        .
 \end{equation*}
 %
 Hence we have that
@@ -667,12 +669,13 @@ that the ping pong ball is stable in the centre of the hair dryer flow.
 In fact, if you generalize the horizontal offset to any number $c$, we
 can see that the centre is never stable, in the sense that the force
 will always be directed away from the centre of the hair dryer flow
-(unless the ball is exactly at the centre).
+(unless the ball is exactly at the centre). Perhaps this isn't a good
+model for the ``ping pong ball in hair dryer flow'' demo?
 
 \textbf{Modelling multiple circles}
 
 In our first example we showed how to embed a circle into the potential
-flow $\Psi(z) = z$ to generate the new potential (this time taking $a = 1/2$)
+flow $\Phi(z) = z$ to generate the new potential (this time taking $a = 1/2$)
 %
 \begin{equation*}
     \Phi_{mt}(z) = z + \frac{1}{4 z}
@@ -680,7 +683,7 @@ flow $\Psi(z) = z$ to generate the new potential (this time taking $a = 1/2$)
 \end{equation*}
 %
 However we can introduce \textit{another} circle into this flow by
-offsetting this potential by $1$ and introducing another circle at the
+offsetting this potential by $1$ unit and introducing another circle at the
 origin of this new flow. We'll call this new flow $\Psi$ and, with the
 second circle (again with $a = 1/2$) embedded into it, $\Psi_{mt}$. We
 will thus take $\Psi$ to be given by
@@ -699,8 +702,8 @@ and hence $\Psi_{mt}$ is given by
 \end{equation*}
 %
 This potential has real and imaginary components that are long and not
-particularly informative, So I'm just going to use Maple and use those
-results directly in my MATLAB code. The result is shown in
+particularly informative, So I'm just going to use Maple to compute them
+and use those results directly in my MATLAB code. The result is shown in
 Figure~\ref{fig:mt-6}.
 %
 \begin{figure}[ht]
