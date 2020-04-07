@@ -24,6 +24,7 @@
 \def\ti#1{\tilde{#1}}
 \newcommand{\dadvd}[2]{\dfrac{\text{D} #1}{\text{D} #2}} % advective derivative
 
+\newcommand{\fC}{\mathcal{C}} % fancy C
 \newcommand{\fS}{\mathcal{S}} % fancy S
 \newcommand{\tphi}{\tilde{\phi}}
 \newcommand{\nhat}{\mathbf{\hat{n}}}
@@ -34,6 +35,14 @@
 \newcommand{\zhat}{\mathbf{\hat{z}}}
 \newcommand{\omegavec}{\boldsymbol{\omega}}
 \newcommand{\tauvec}{\boldsymbol{\tau}}
+\newcommand{\dtauvec}{\boldsymbol{\delta \tau}}
+\newcommand{\dFvec}{\boldsymbol{\delta} \mathbf{F}}
+\newcommand{\dF}{\delta F}
+\newcommand{\ds}{\delta s}
+\newcommand{\dz}{\delta z}
+\newcommand{\dtau}{\delta \tau}
+\newcommand{\titau}{\tilde{\tau}}
+\newcommand{\tidtau}{\delta \tilde{\tau}}
 
 % Links
 \usepackage{hyperref}
@@ -228,10 +237,203 @@ Evaluating the stress at our boundary walls we have
 %
 which is exactly what we would expect.
 
+\newpage
+
+\textbf{202) Complexification of torque.}
+In this problem I'm going to do the following:
+%
+\begin{itemize}
+    \item derive a formula for the torque about the origin due to forces on a body
+    \item show an example of why an object in uniform flow is rotationally stable
+\end{itemize}
+
+\textbf{Deriving the torque formula}
+
+We're going to work in two dimensions here. Consider a fixed body which
+has a closed contour $\fC$ (taken with counter-clockwise orientation) as
+its boundary. Suppose we have a torque $\dtauvec$ about the origin due
+to a force $\dFvec$ acting at some point $\*x$ which lies along a smell
+element $\ds$ of $\fC$. This torque is thus given by
+%
+\begin{equation}
+    \dtau = (\*x \times \dFvec) \cdot \zhat = x \dF_y - y \dF_x
+    \label{eq:tor-1}
+    ,
+\end{equation}
+%
+where for convenience we took $\dtau$ to be the $z$-component of
+$\dtauvec$ (the other components are identically 0). Switching to complex
+variables we will represent $\*x$ with $z = x + i y$ and $\dFvec$ with $\dF =
+\dF_x + i \dF_y$. Note that we can write~\eqref{eq:tor-1} as
+%
+\begin{equation}
+    \dtau = \Re \cbr{z (\dF_y + i \dF_x)} = \Re \cbr{i z (\dF_x - i \dF_y)}
+    \label{eq:tor-2}
+    .
+\end{equation}
+%
+Now that we've obtained the $\dF_x - i \dF_y$ term we essentially just
+need to follow Acheson's steps for obtaining the Blasius integral
+formula to get our desired equation for torque. For completeness, I will
+reproduce these steps here (using the notation we've been using in class).
+
+Considering Figure $4.8$ in Acheson (p. 140), the net force on $\ds$ is
+$(-p \sin \theta, p \cos \theta) \ds$ (where $p$ is the pressure acting
+on $\ds$), and hence
+%
+\begin{equation}
+    \dF_x - i \dF_y
+        = \del{-p \sin \theta - i p \cos \theta} \ds = -p i e^{-i \theta} \ds
+    \label{eq:tor-3}
+    .
+\end{equation}
+%
+Since $\fC$ is a streamline we have that on $\fC$ (again, looking at the
+Acheson figure is helpful)
+%
+\begin{align*}
+    u = |\*u| \cos \theta, \\
+    v = |\*u| \sin \theta.
+\end{align*}
+%
+This lets us write, again on $\fC$,
+%
+\begin{equation}
+    \dod{\Phi}{z} = u - i v = |\*u| e^{-i \theta}
+    \label{eq:tor-4}
+    .
+\end{equation}
+%
+Using Bernouilli II (I think Bernoulli I would work as well because we
+are on a streamline) we can express
+%
+\begin{equation}
+    p = H_\infty - \frac{\rho_0}{2} |\*u|^2
+    \label{eq:tor-5}
+    ,
+\end{equation}
+%
+where $H_\infty$ is a constant, and so substituting~\eqref{eq:tor-5}
+into~\eqref{eq:tor-3} give us
+%
+\begin{equation}
+    \dF_x - i \dF_y
+        = \del{\frac{\rho_0}{2} |\*u|^2 - H_\infty} i e^{-i \theta} \ds
+    \label{eq:tor-6}
+        .
+\end{equation}
+%
+Now, using~\eqref{eq:tor-4}, we can further express~\eqref{eq:tor-6} as
+%
+\begin{equation}
+    \dF_x - i \dF_y
+        = i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 e^{i \theta} \ds - i e^{- i \theta} H_\infty \ds
+    \label{eq:tor-7}
+        .
+\end{equation}
+%
+Now that we've obtained a suitable expression for $\dF_x - i \dF_y$,
+we'll revisit~\eqref{eq:tor-2} and write
+%
+\begin{equation*}
+    \dtau = \Re \cbr{
+        i z \del{i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 e^{i \theta} \ds
+        - i e^{- i \theta} H_\infty \ds}
+    }
+    .
+\end{equation*}
+%
+Recognizing that $e^{i \theta} \ds = \dz$ we can write this in a ``cleaner form'' as
+%
+\begin{equation*}
+    \dtau = \Re \cbr{
+        i z \del{i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 \dz
+        - i e^{- 2 i \theta} H_\infty \dz}
+    }
+    .
+\end{equation*}
+%
+Dispensing with the ``real part'' notation for the moment, let us write
+%
+\begin{equation*}
+    \tidtau =
+        i z \del{i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 \dz
+        - i e^{- 2 i \theta} H_\infty \dz}
+    .
+\end{equation*}
+%
+and taking the limit as $\delta \to 0$, integrate along $\fC$ and write
+%
+\begin{equation*}
+    \titau =
+        \oint_\fC
+        i z \del{i \frac{\rho_0}{2} \del{\dod{\Phi}{z}}^2 \dz
+        - i e^{- 2 i \theta} H_\infty \dz}
+    .
+\end{equation*}
+%
+The second term in the integrand vanishes due to analyticity, leaving us
+with the ``complexified'' torque formula
+%
+\begin{equation*}
+    \titau =
+    - \frac{\rho_0}{2} \oint_\fC z \del{\dod{\Phi}{z}}^2 \dif z
+    .
+\end{equation*}
+%
+Thus we have that
+%
+\begin{equation*}
+    \tau = \Re \cbr{\titau} =
+    - \frac{\rho_0}{2} \Re \cbr{\oint_\fC z \del{\dod{\Phi}{z}}^2 \dif z}
+    .
+\end{equation*}
+%
+As an aside, what does $\Im \cbr{\titau}$ represent? I don't have the
+answer but I am curious.
+
+\textbf{An example}
+
+Now we'll consider the familiar flow past a circular cylinder whose
+potential is given by
+%
+\begin{equation*}
+    \Phi(z) = U_\infty (z + \frac{a^2}{z})
+\end{equation*}
+%
+(there's actually a figure for this with $U_\infty = 1$ and $a = 2$ in
+my Milne-Thomson discussion below; Figure~\ref{fig:mt-2}). Now,
+%
+\begin{equation*}
+    z \del{\dod{\Phi}{z}}^2
+        = z \del{U_\infty - \frac{a^2}{z^2}}^2
+        = z U_\infty^2 - \frac{2 U_\infty a^2}{z} + \frac{a^4}{z^2}
+    ,
+\end{equation*}
+%
+and so, denoting $\fC$ as the boundary of the cylinder (taken with a
+counter-clockwise orientation) the net torque about the origin of the
+cylinder is given by
+%
+\begin{align*}
+    \tau
+        &= - \frac{\rho_0}{2} \Re \cbr{\oint_\fC z \del{\dod{\Phi}{z}}^2 \dif z} \\
+        &= - \frac{\rho_0}{2} \Re \cbr{2 \pi i\res_{z = 0} \cbr{z \del{\dod{\Phi}{z}}^2}} \\
+        &= - \frac{\rho_0}{2} \Re \cbr{2 \pi i (-2 U_\infty a^2)} \\
+        &= 0
+     ,
+\end{align*}
+%
+so the cylinder is rotationally stable, which makes sense. How does this
+generalize this example to \textit{any} body in a uniform flow? My
+intuition is that, provided the body is symmetric with respect to the
+orientation of flow, the torque will be $0$. However, this might even
+hold if the body isn't symmetric, although this isn't particularly
+intuitive for me.
 
 \newpage
 
-\textbf{202) Milne-Thomson circle theorem}
+\textbf{203) Milne-Thomson circle theorem.}
 In this problem I'm going to do the following:
 %
 \begin{itemize}
@@ -497,7 +699,7 @@ and hence $\Psi_{mt}$ is given by
 \end{equation*}
 %
 This potential has real and imaginary components that are long and not
-particularly informative. So I'm just going to use Maple and use those
+particularly informative, So I'm just going to use Maple and use those
 results directly in my MATLAB code. The result is shown in
 Figure~\ref{fig:mt-6}.
 %
@@ -508,16 +710,16 @@ Figure~\ref{fig:mt-6}.
     \label{fig:mt-6}
 \end{figure}
 %
-The result is surprising. What is the third singularity (the one that is
+This result is surprising. What is the third singularity (the one that is
 most ``intense'') doing there? How can we interpret it? Why is the $\psi
 = 0$ contour for our original circle seemingly ``reaching over'' to
 ``include it'' in its interior?
 
-I don't have the answers to any of these questions. What I can ask is
-whether this is a good model for embedding two circles into a flow. I
-want to say yes, albeit hesitantly, because the flow looks reasonable.
-The hesitation comes from not knowing how to understand the third
-singularity. This is something I would explore in more detail in a
-longer, more comprehensive project.
+I don't have the answers to any of these questions. What I can
+(partially) answer is whether this is a good model for embedding two (or
+more) circles into a flow. I want to say yes, albeit hesitantly, because
+the flow looks reasonable. The hesitation comes from not knowing how to
+understand the third singularity. This is something I would explore in
+more detail in a longer, more comprehensive project.
 
 \end{document}
