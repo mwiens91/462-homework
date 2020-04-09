@@ -30,8 +30,10 @@ clf
 hold on
 
 % Quivers - plotting twice makes symmetrically-placed arrows
-quiver(x,y,uu.*(rr>=1),vv.*(rr>=1),0.3,'k')
-quiver(x,y,-uu.*(rr>=1),-vv.*(rr>=1),0.3,'k.')
+quiv_condition = rr>=4.3;
+
+quiver(x,y,uu.*quiv_condition,vv.*quiv_condition,0.3,'k')
+quiver(x,y,-uu.*quiv_condition,-vv.*quiv_condition,0.3,'k.')
 
 % Axes
 axis([-L +L -L +L]);

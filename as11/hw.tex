@@ -559,11 +559,11 @@ and hence
     .
 \end{align*}
 %
-The resulting flow is plotted in Figure~\ref{fig:mt-2}. In this
-figure, the streamline $\psi = 0$ is plotted in black, and we can
-see that it aligns perfectly with the circle $|z| = 2$. Note also that
-velocity quivers at $|z| < 1$ where not plotted, due to their large
-magnitude near the origin.
+The resulting flow is plotted in Figure~\ref{fig:mt-2}. In this figure,
+the streamline $\psi = 0$ is plotted in black, and we can see that it
+aligns perfectly with the circle $|z| = 2$. Note also that velocity
+quivers at $|z| < 2$ were not plotted, as this isn't part of the flow of
+interest.
 %
 \begin{figure}[ht]
     \includegraphics[width=35em]{mt_ex1_2}
@@ -640,9 +640,9 @@ Hence we would expect that a ping pong ball placed in the centre of the
 double hair dryer flow will stay in the centre.
 
 What if we offset the ping pong ball so it wasn't exactly in the centre
-of the double hair dryer flow? Let's offset the ball (or, equivalently, the
-double hair dryer flow) by $0.1$ units horizontally. We can model this by
-generating a new potential $\Phi_{mt2}$ given by
+of the double hair dryer flow? Let's offset the ball by $\Delta x =
+0.1$ units (horizontally to the right). We can model this by generating a
+new potential $\Phi_{mt2}$ given by
 %
 \begin{equation*}
     \Phi_{mt2}(z) = (z + 0.1)^2 + \del{\frac{1}{z} + 0.1}^2
@@ -688,10 +688,10 @@ Hence we have that
     .
 \end{align*}
 %
-So it would appear that the ping bong ball is being away from
-centre double hair dryer flow with this offset.
+So it would appear that the ping bong ball is being pushed away from the
+centre of the double hair dryer flow with this offset.
 
-Before moving on to single hair dryer flow, let's consider any offset
+Before moving on to the single hair dryer flow, let's consider any offset
 $\tiz \in \C$ and see whether the centre of the flow is stable with
 respect to this offset. In this case, our potential $\Phi_{mt3}$ will be
 given by
@@ -703,7 +703,7 @@ given by
 %
 Expressing $\tiz = \tix + i \tiy$ we have that (omitting the whole
 calculation for brevity; the steps are identical to what we did with the
-$0.1$ horizontal offset)
+$\Delta x = 0.1$ horizontal offset)
 %
 \begin{equation*}
     \res_{z = 0} \del{\Phi^\prime_{mt3}}^2 = -8 (\tix + i \tiy)
@@ -717,7 +717,7 @@ and so
         &\to \del{i \frac{\rho_0}{2} \oint_{\partial B} \del{\Phi_{mt3}^\prime(z)}^2 \dif z}^* \\
         &= \del{i \frac{\rho_0}{2} 2 \pi i \res_{z = 0} \sbr{\del{\Phi^\prime_{mt3}}^2}}^* \\
         &= \del{i \frac{\rho_0}{2} 2 \pi i (- 8 (\tix + i \tiy)}^* \\
-        &= 8 \rho_0 \pi (\tix - \tiy)
+        &= 8 \rho_0 \pi (\tix - i \tiy)
     .
 \end{align*}
 %
