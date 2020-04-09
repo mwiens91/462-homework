@@ -18,6 +18,7 @@
 \DeclareMathOperator*{\res}{Res}
 
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\Z}{\mathbb{Z}}
 
 \def\*#1{\mathbf{#1}}
@@ -43,6 +44,9 @@
 \newcommand{\dtau}{\delta \tau}
 \newcommand{\titau}{\tilde{\tau}}
 \newcommand{\tidtau}{\delta \tilde{\tau}}
+\newcommand{\tiz}{\tilde{z}}
+\newcommand{\tix}{\tilde{x}}
+\newcommand{\tiy}{\tilde{y}}
 
 % Links
 \usepackage{hyperref}
@@ -245,6 +249,7 @@ In this problem I'm going to do the following:
 \begin{itemize}
     \item derive a formula for the torque about the origin due to forces on a body
     \item show an example of why an object in uniform flow is rotationally stable
+    \item generalize the above example for general rotational stability
 \end{itemize}
 
 \textbf{Deriving the torque formula}
@@ -399,7 +404,7 @@ Now we'll consider the familiar flow past a circular cylinder whose
 potential is given by
 %
 \begin{equation*}
-    \Phi(z) = U_\infty (z + \frac{a^2}{z})
+    \Phi(z) = U_\infty \del{z + \frac{a^2}{z}}
 \end{equation*}
 %
 (there's actually a figure for this with $U_\infty = 1$ and $a = 2$ in
@@ -425,12 +430,31 @@ cylinder is given by
      ,
 \end{align*}
 %
-so the cylinder is rotationally stable, which makes sense. How does this
-example generalize to \textit{any} body in \textit{any} uniform flow? My
-intuition is that, provided the body is symmetric with respect to the
-orientation of flow, the torque will be $0$. However, this might even
-hold if the body isn't symmetric, although this isn't particularly
-intuitive to me.
+so the cylinder is rotationally stable, which makes sense.
+
+\textbf{Generalizing the example}
+
+What can we say about the torque about the origin for an arbitrary body?
+The key lies in the circulation
+%
+\begin{equation*}
+    \Gamma = \Re \cbr{\oint_\fC \dod{\Phi}{z} \dif z}
+    .
+\end{equation*}
+%
+The Laurent series for the above integrand, has a non-zero residue only if
+the Laurent series for
+%
+\begin{equation*}
+    z \del{\dod{\Phi}{z}}^2
+\end{equation*}
+%
+also has a non-zero residue. Moreover, we can say that we have a non-zero
+\textit{real} component of the residue for the integrand of the
+circulation only if we have a non-zero real component of the
+residue for the integrand of the torque integrand. Hence there is no net
+torque about the origin only if the circulation around the body
+is zero. (Whether the converse holds is non-trivial.)
 
 \newpage
 
@@ -441,7 +465,7 @@ In this problem I'm going to do the following:
     \item describe what the Milne-Thomson circle theorem states
     \item prove the theorem
     \item show an example
-    \item show another example (the ping pong ball)
+    \item show another example (the ping pong ball in single/double hair dryer flow)
     \item explore whether we can extend this theorem to multiple circles
 \end{itemize}
 
@@ -552,8 +576,9 @@ magnitude near the origin.
 
 Now we'll look at the ``ping-pong ball in a hair dryer'' flow we briefly
 looked at in lecture. For this example, we'll get a bit more involved in
-the analysis than the previous example. Here, Milne-Thomson will
-essentially insert a circle (our ping pong ball) into the hair dryer
+the analysis than the previous example. First we'll look at ``double
+hair dryer'' flow. Here, Milne-Thomson will essentially insert a circle
+(our ping pong ball) into the centre of the double hair dryer
 flow $\Phi$ given by
 %
 \begin{equation*}
@@ -576,21 +601,21 @@ Computing the real and imaginary components of $\Phi_{mt}$ then gives us
     .
 \end{align*}
 %
-Plots of the hair dryer flow generated from $\Phi$ and with the embedded
-ping pong ball generated from $\Phi_{mt}$ are shown in
+Plots of the double hair dryer flow generated from $\Phi$ and with the
+embedded ping pong ball generated from $\Phi_{mt}$ are shown in
 Figures~\ref{fig:mt-3} and~\ref{fig:mt-4}, respectively.
 %
 \begin{figure}[ht]
     \includegraphics[width=35em]{mt_ex2_1}
     \centering
-    \caption{Hair dryer flow generated from $\Phi$}
+    \caption{Double hair dryer flow generated from $\Phi$}
     \label{fig:mt-3}
 \end{figure}
 %
 \begin{figure}[ht]
     \includegraphics[width=35em]{mt_ex2_2}
     \centering
-    \caption{Ping pong ball in hair dryer flow generated from $\Phi_{mt}$}
+    \caption{Ping pong ball in double hair dryer flow generated from $\Phi_{mt}$}
     \label{fig:mt-4}
 \end{figure}
 %
@@ -612,11 +637,11 @@ and, thus, using the residue theorem we have that
 \end{equation*}
 %
 Hence we would expect that a ping pong ball placed in the centre of the
-hair dryer flow will stay in the center.
+double hair dryer flow will stay in the centre.
 
 What if we offset the ping pong ball so it wasn't exactly in the centre
-of the hair dryer flow? Let's offset the ball (or, equivalently, the
-hair dryer flow) by $0.1$ units horizontally. We can model this by
+of the double hair dryer flow? Let's offset the ball (or, equivalently, the
+double hair dryer flow) by $0.1$ units horizontally. We can model this by
 generating a new potential $\Phi_{mt2}$ given by
 %
 \begin{equation*}
@@ -642,8 +667,8 @@ small).
     \label{fig:mt-5}
 \end{figure}
 %
-Let's go ahead and compute the Blasius integral formula again. First we'll calculate the integrand
-in the Blasius integral formula:
+Let's go ahead and compute the Blasius integral formula again. First
+we'll calculate the integrand in the Blasius integral formula:
 %
 \begin{equation*}
     \del{\Phi^\prime_{mt2}}^2
@@ -656,21 +681,63 @@ Hence we have that
 %
 \begin{align*}
     \*F_B
-        &\to \del{i \frac{\rho_0}{2} \oint_{\partial B} \del{\Phi_{mt}^\prime(z)}^2 \dif z}^* \\
+        &\to \del{i \frac{\rho_0}{2} \oint_{\partial B} \del{\Phi_{mt2}^\prime(z)}^2 \dif z}^* \\
         &= \del{i \frac{\rho_0}{2} 2 \pi i \res_{z = 0} \sbr{\del{\Phi^\prime_{mt2}}^2}}^* \\
         &= \del{i \frac{\rho_0}{2} 2 \pi i (-0.8)}^* \\
         &= 0.8 \rho_0 \pi
     .
 \end{align*}
 %
-So it would appear that the ping bong ball is being pushed out of the
-hair dryer flow with this offset, which does not support the observation
-that the ping pong ball is stable in the centre of the hair dryer flow.
-In fact, if you generalize the horizontal offset to any number $c$, we
-can see that the centre is never stable, in the sense that the force
-will always be directed away from the centre of the hair dryer flow
-(unless the ball is exactly at the centre). Perhaps this isn't a good
-model for the ``ping pong ball in hair dryer flow'' demo?
+So it would appear that the ping bong ball is being away from
+centre double hair dryer flow with this offset.
+
+Before moving on to single hair dryer flow, let's consider any offset
+$\tiz \in \C$ and see whether the centre of the flow is stable with
+respect to this offset. In this case, our potential $\Phi_{mt3}$ will be
+given by
+%
+\begin{equation*}
+    \Phi_{mt3}(z) = (z + \tiz)^2 + \del{\frac{1}{z} + \tiz}^2
+    .
+\end{equation*}
+%
+Expressing $\tiz = \tix + i \tiy$ we have that (omitting the whole
+calculation for brevity; the steps are identical to what we did with the
+$0.1$ horizontal offset)
+%
+\begin{equation*}
+    \res_{z = 0} \del{\Phi^\prime_{mt3}}^2 = -8 (\tix + i \tiy)
+    ,
+\end{equation*}
+%
+and so
+%
+\begin{align*}
+    \*F_B
+        &\to \del{i \frac{\rho_0}{2} \oint_{\partial B} \del{\Phi_{mt3}^\prime(z)}^2 \dif z}^* \\
+        &= \del{i \frac{\rho_0}{2} 2 \pi i \res_{z = 0} \sbr{\del{\Phi^\prime_{mt3}}^2}}^* \\
+        &= \del{i \frac{\rho_0}{2} 2 \pi i (- 8 (\tix + i \tiy)}^* \\
+        &= 8 \rho_0 \pi (\tix - \tiy)
+    .
+\end{align*}
+%
+From this we can conclude that any perturbation of the ping pong ball
+from the centre of the hair dryer flow will push the ping pong ball
+\textit{away} from the centre in the horizontal direction and
+\textit{towards} the centre in the vertical direction. Looking again at
+the flow in Figure~\ref{fig:mt-3}, this result makes sense.
+
+We've looked at the double hair dryer flow, but what can we say about
+single hair dryer flow? It turns out that if we take the single hair
+dryer flow to be a vertically translated version of our double hair
+dryer flow, then we've already solved the problem. Considering our
+generalization above, the ping pong ball is \textit{never} stable in the
+centre of the single hair dryer flow. The ball will move vertically up
+no matter what, and, if not horizontally centered, will also move
+horizontally outwards. This is consistent with Figure~\ref{fig:mt-3}.
+However, it is not consistent with the demo we saw in lecture, which
+implies that this flow is not suitable to model the physics seen in the
+lecture demo.
 
 \textbf{Modelling multiple circles}
 
@@ -713,16 +780,34 @@ Figure~\ref{fig:mt-6}.
     \label{fig:mt-6}
 \end{figure}
 %
-This result is surprising. What is the third singularity (the one that is
-most ``intense'') doing there? How can we interpret it? Why is the $\psi
-= 0$ contour for our original circle seemingly ``reaching over'' to
-``include it'' in its interior?
+This result is physically plausible in that it looks roughly like what I
+would expect to happen if we inserted two circles into the flow $\Phi$.
 
-I don't have the answers to any of these questions. What I can
-(partially) answer is whether this is a good model for embedding two (or
-more) circles into a flow. I want to say yes, albeit hesitantly, because
-the flow looks reasonable. The hesitation comes from not knowing how to
-understand the third singularity. This is something I would explore in
-more detail in a longer, more comprehensive project.
+These circles are ``touching'' each other by design. What if they were
+farther apart. Let's see what happens in this case. Here we will keep $a
+= 1/2$ for both circles and offset horizontally $5$ units. This gives us
+the final potential (after both circles are embedded)
+%
+\begin{equation*}
+    \Psi_{mt2}
+        = (z - 5) + \frac{1}{4 (z - 5)}
+        + \del{\frac{1}{4z} - 5} + \frac{1}{4 (\frac{1}{4z} - 5)}
+\end{equation*}
+%
+which results in the flow in Figure~\ref{fig:mt-7}.
+%
+\begin{figure}[ht]
+    \includegraphics[width=35em]{mt_ex3_2}
+    \centering
+    \caption{Modelling two circle flow generated from $\Psi_{mt2}$}
+    \label{fig:mt-7}
+\end{figure}
+%
+Again, the results here look perfectly reasonable.
+
+Based on these two example my conjecture is that, for any given flow, we
+can approximate embedding \textit{any} object into the flow by
+approximating it with non-overlapping circles and applying Milne-Thomson
+successively in the manner we've done here.
 
 \end{document}

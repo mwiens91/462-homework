@@ -31,7 +31,7 @@ hold on
 % Quivers - plotting twice makes symmetrically-placed arrows
 rr1 = xx.^2 + yy.^2;
 rr2 = (xx - 1).^2 + yy.^2;
-quiv_condition = rr1>=(1/2) & rr2>=(1/2);
+quiv_condition = rr1>=0.3 & rr2>=0.3;
 
 quiver(x,y,uu.*quiv_condition,vv.*quiv_condition,0.3,'k')
 quiver(x,y,-uu.*quiv_condition,-vv.*quiv_condition,0.3,'k.')
